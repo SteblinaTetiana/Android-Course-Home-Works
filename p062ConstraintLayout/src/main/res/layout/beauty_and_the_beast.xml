@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgBeauty"
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/image_beauty"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgBeautyBeast"
+        android:layout_width="100dp"
+        android:layout_height="135dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="180dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/icon_beauty_best"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgBeauty" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Beauty and the Beast"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imgBeautyBeast"
+        app:layout_constraintTop_toBottomOf="@+id/imgBeauty" />
+
+    <TextView
+        android:id="@+id/txtData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:text="March 2017 PG 129 minutes"
+        android:textColor="#708090"
+        app:layout_constraintStart_toEndOf="@+id/imgBeautyBeast"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBeauty"
+        app:srcCompat="@drawable/favorites_icon1">
+
+    </ImageButton>
+
+    <Button
+        android:id="@+id/btnRent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="Rent From R29.99"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/imgBeautyBeast"
+        app:layout_constraintTop_toBottomOf="@+id/imgBeautyBeast" />
+
+    <Button
+        android:id="@+id/btnBuy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="Buy From R129.99"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/btnRent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBeautyBeast" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#74C8C8C8"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/btnRent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRent">
+
+    </View>
+
+    <TextView
+        android:id="@+id/txt4.5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_button_purple"
+        android:padding="15dp"
+        android:text="4.5"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/txtRatings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="10dp"
+        android:text="242 ratings"
+        android:textColor="#919191"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt4.5" />
+
+    <ImageView
+        android:id="@+id/imgPersons"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/custom_button_purple"
+        android:backgroundTintMode="multiply"
+        android:padding="15dp"
+        android:src="@drawable/icon_persons"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt4.5"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/txtFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:text="Family"
+        android:textColor="#919191"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtRatings"
+        app:layout_constraintTop_toBottomOf="@+id/imgPersons" />
+
+    <ImageView
+        android:id="@+id/imgTomato"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/custom_button_percent"
+        android:padding="15dp"
+        android:src="@drawable/icon_tomato"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgPersons"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/txtPerсent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="10dp"
+        android:text="71%"
+        android:textColor="#919191"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtFamily"
+        app:layout_constraintTop_toBottomOf="@+id/imgTomato" />
+
+    <ImageView
+        android:id="@+id/imgSimilar"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/custom_button_purple"
+        android:padding="15dp"
+        android:src="@drawable/icon_similar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgTomato"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/txtSimilar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:text="Similar"
+        android:textColor="#919191"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/txtPerсent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSimilar" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="6dp"
+        android:background="#74C8C8C8"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/txtRatings"
+        app:layout_constraintTop_toBottomOf="@+id/txtRatings">
+
+    </View>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The story and characters you know and love come to spectacular life in the live-action adaption of Disney's animated classic Beauty and the best"
+        android:textColor="@color/black"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
