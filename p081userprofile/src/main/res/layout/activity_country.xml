@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CountryActivity"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/afghanistan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/afghanistan"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:background="@drawable/background_country_button"
+        android:drawableEnd="@drawable/afghanistan"/>
+
+    <Button
+        android:id="@+id/albania"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/albania"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:background="@drawable/background_country_button"
+        android:drawableEnd="@drawable/albania"/>
+
+    <Button
+        android:id="@+id/algeria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/algeria"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:background="@drawable/background_country_button"
+        android:drawableEnd="@drawable/algeria"/>
+
+    <Button
+        android:id="@+id/andorra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Andorra"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:background="@drawable/background_country_button"
+        android:drawableEnd="@drawable/andorra"/>
+</LinearLayout>
