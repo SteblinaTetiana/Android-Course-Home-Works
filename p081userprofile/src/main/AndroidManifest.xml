@@ -11,12 +11,10 @@
         android:theme="@style/Theme.AndroidCourseHomeWorks">
         <activity
             android:name=".CountryActivity"
-            android:exported="true"
-            android:label="@string/country"/>
+            android:exported="true" />
         <activity
             android:name=".NameActivity"
-            android:exported="true"
-            android:label="@string/name"/>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -7,7 +7,7 @@
     tools:context=".CountryActivity"
     android:orientation="vertical">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/afghanistan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,10 +18,14 @@
         android:textSize="16sp"
         android:gravity="center_vertical"
         android:textAllCaps="false"
-        android:background="@drawable/background_country_button"
-        android:drawableEnd="@drawable/afghanistan"/>
+        app:icon="@drawable/afghanistan"
+        app:iconGravity="end"
+        app:iconTint="@null"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:background="@drawable/background_country_button" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/albania"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,9 +36,13 @@
         android:gravity="center_vertical"
         android:textAllCaps="false"
         android:background="@drawable/background_country_button"
-        android:drawableEnd="@drawable/albania"/>
+        app:icon="@drawable/albania"
+        app:iconGravity="end"
+        app:iconTint="@null"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/algeria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,19 +53,27 @@
         android:gravity="center_vertical"
         android:textAllCaps="false"
         android:background="@drawable/background_country_button"
-        android:drawableEnd="@drawable/algeria"/>
+        app:icon="@drawable/algeria"
+        app:iconGravity="end"
+        app:iconTint="@null"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/andorra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="Andorra"
+        android:text="@string/andorra"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:gravity="center_vertical"
         android:textAllCaps="false"
         android:background="@drawable/background_country_button"
-        android:drawableEnd="@drawable/andorra"/>
+        app:icon="@drawable/andorra"
+        app:iconGravity="end"
+        app:iconTint="@null"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp" />
 </LinearLayout>
