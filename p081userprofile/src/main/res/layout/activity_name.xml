@@ -32,7 +32,7 @@
         android:paddingRight="40dp"
         android:text="@string/save"
         android:textAllCaps="false"
-        android:textColor="#E65C5B5B"
+        android:textColor="#E6424242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

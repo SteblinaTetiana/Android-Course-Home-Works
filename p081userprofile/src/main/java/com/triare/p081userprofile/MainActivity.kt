@@ -1,16 +1,22 @@
 package com.triare.p081userprofile
 
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
+import android.util.Log
 import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import android.widget.ArrayAdapter
+
+
+
 
 
 
@@ -21,13 +27,22 @@ class MainActivity : AppCompatActivity() {
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         { result: ActivityResult ->
+            if (result.resultCode != Activity.RESULT_OK) {
+            } else {
+                try {
+                    val selectedImage: Uri? = result.data?.data
+                    if (selectedImage != null) {
+                        findViewById<ImageView>(R.id.image_profile).setImageURI(result.data?.data)
+                    } else {
+                        findViewById<ImageView>(R.id.image_profile).setImageBitmap(result.data?.extras?.get(
+                            "data") as Bitmap)
+                    }
+                } catch (error: Exception) {
+                    Log.d("TAG==>>", "Error : ${error.localizedMessage}")
+                }
+            }
+
             when (result.resultCode) {
-                REQUEST_IMAGE_CAPTURE -> {
-                    findViewById<ImageView>(R.id.image_profile).setImageBitmap(result.data?.extras?.get("data") as Bitmap)
-                }
-                REQUEST_PICK_IMAGE -> {
-                    findViewById<ImageView>(R.id.image_profile).setImageURI(result.data?.data)
-                }
                 NameActivity.REQUEST_NAME -> {
                     findViewById<TextView>(R.id.textview_name).text =
                         result.data?.getStringExtra("NAME")
@@ -42,52 +57,45 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val image_button = findViewById<ImageButton>(R.id.imageButton)
+        val selectItem = findViewById<ImageButton>(R.id.select_item)
         val name = findViewById<TextView>(R.id.textview_name)
         val country = findViewById<TextView>(R.id.textview_country)
         name.setOnClickListener {
-            val intent_name = Intent(this, NameActivity::class.java)
-            startForResult.launch(intent_name)
+            val intentName = Intent(this, NameActivity::class.java)
+            startForResult.launch(intentName)
         }
 
         country.setOnClickListener {
-            val intent_country = Intent(this, CountryActivity::class.java)
-            startForResult.launch(intent_country)
+            val intentCountry = Intent(this, CountryActivity::class.java)
+            startForResult.launch(intentCountry)
         }
 
-
-        image_button.setOnClickListener {
+        selectItem.setOnClickListener {
             showMenu()
             }
     }
 
 
      private fun showMenu() {
-         val image_button = findViewById<ImageButton>(R.id.imageButton)
-         val text_item = findViewById<TextView>(R.id.text_item)
+         val selectItem = findViewById<ImageButton>(R.id.select_item)
          val menu = ListPopupWindow(this)
-         menu.anchorView = image_button
+         menu.anchorView = selectItem
 
          val items = listOf("Camera", "Gallery")
          val adapter = ArrayAdapter(this, R.layout.listpopupwindow_item, items)
          menu.setAdapter(adapter)
          menu.setOnItemClickListener { parent, view, position, id ->
-             text_item.text = items[position]
              if(position == 0 ){
                  val takePicture = Intent(ACTION_IMAGE_CAPTURE)
                  startForResult.launch(takePicture)
              } else {
                  val pickPhoto =Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                 pickPhoto.type = "image/*"
                  startForResult.launch(pickPhoto)
              }
              menu.dismiss()
          }
              menu.show()
          }
-
-    companion object  {
-        private const val  REQUEST_IMAGE_CAPTURE = -1
-        private const val REQUEST_PICK_IMAGE = 2
-    }
      }
 

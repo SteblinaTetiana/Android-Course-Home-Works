@@ -28,6 +28,6 @@ class NameActivity : AppCompatActivity() {
         return true
     }
     companion object  {
-        const val REQUEST_NAME = 1
+        const val REQUEST_NAME = 2
     }
 }
