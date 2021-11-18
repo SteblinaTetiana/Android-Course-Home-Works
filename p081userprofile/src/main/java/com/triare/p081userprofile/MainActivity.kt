@@ -16,12 +16,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import android.widget.ArrayAdapter
 
 
-
-
-
-
-
-
 class MainActivity : AppCompatActivity() {
 
     private val startForResult =
@@ -75,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-
      private fun showMenu() {
          val selectItem = findViewById<ImageButton>(R.id.select_item)
          val menu = ListPopupWindow(this)
@@ -98,4 +91,3 @@ class MainActivity : AppCompatActivity() {
              menu.show()
          }
      }
-

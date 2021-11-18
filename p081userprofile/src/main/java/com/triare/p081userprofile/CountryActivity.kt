@@ -8,9 +8,6 @@ import com.google.android.material.button.MaterialButton
 import kotlinx.parcelize.Parcelize
 
 
-
-
-
 class CountryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,4 +61,3 @@ companion object  {
     const val REQUEST_COUNTRY = 3
 }
 }
-
