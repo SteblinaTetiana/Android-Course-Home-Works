@@ -70,21 +70,14 @@ class Repository {
     )
 
 
-    fun getAnimalById(id: Int?): Animals {
-        if (id == null) {
-            listAnimals.find { it.id == id }
-        }
-        return listAnimals[0]
-
+    fun getAnimalById(id: Int?): Animals? {
+        return listAnimals.find { it.id == id }
     }
-
-
 }
 
     data class Animals(
-        val id: Int?,
-        val title: String?,
-        val image: Int?,
-        val description: String?
+        val id: Int,
+        val title: String,
+        val image: Int,
+        val description: String
     )
-

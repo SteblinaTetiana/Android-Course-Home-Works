@@ -14,18 +14,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val image = findViewById<ImageView>(R.id.image)
+        val image = findViewById<ImageView>(R.id.icon)
         val title = findViewById<TextView>(R.id.heading)
         val description = findViewById<TextView>(R.id.description)
 
        viewModel= ViewModelProvider(this).get(MainViewModel::class.java)
 
-        viewModel?.animalsModel?.observe(this){
-            image.setImageResource(it.image!!)
-            title.text = it.title
-            description.text = it.description
+        viewModel?.animalsModel?.observe(this) {
+            image?.setImageResource(it.image)
+            title?.text = it.title
+            description?.text = it.description
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
