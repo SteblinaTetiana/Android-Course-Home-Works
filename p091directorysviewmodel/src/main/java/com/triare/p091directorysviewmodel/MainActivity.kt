@@ -14,16 +14,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val image = findViewById<ImageView>(R.id.icon)
-        val title = findViewById<TextView>(R.id.heading)
+        val icon = findViewById<ImageView>(R.id.icon)
+        val heading = findViewById<TextView>(R.id.heading)
         val description = findViewById<TextView>(R.id.description)
 
        viewModel= ViewModelProvider(this).get(MainViewModel::class.java)
 
-        viewModel?.animalsModel?.observe(this) {
-            image?.setImageResource(it.image)
-            title?.text = it.title
-            description?.text = it.description
+        viewModel?.model?.observe(this) {
+                it?.icon?.let(icon::setImageResource)
+                heading?.text = it?.heading
+                description?.text = it?.description
         }
     }
 
@@ -45,8 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        viewModel?.addAnimals(item.itemId)
+        viewModel?.addAnimalPlant(item.itemId)
         return super.onOptionsItemSelected(item)
     }
-
 }

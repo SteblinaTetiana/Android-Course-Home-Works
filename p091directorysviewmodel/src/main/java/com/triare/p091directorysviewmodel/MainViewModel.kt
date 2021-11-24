@@ -8,10 +8,10 @@ class MainViewModel: ViewModel() {
 
      private val repository = Repository()
 
-    val animalsModel = MutableLiveData<Animals>()
+    val model = MutableLiveData<AnimalsPlants>()
 
-    fun addAnimals(id:Int?){
-        val animal = repository.getAnimalById(id)
-        animalsModel.value =animal
+    fun addAnimalPlant(id:Int?){
+        val animalsPlants = repository.getAnimalPlantById(id)
+        model.value =animalsPlants
     }
 }
