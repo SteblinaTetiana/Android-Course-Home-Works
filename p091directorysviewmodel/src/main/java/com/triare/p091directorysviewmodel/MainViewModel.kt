@@ -12,6 +12,6 @@ class MainViewModel: ViewModel() {
 
     fun addAnimalPlant(id:Int?){
         val animalsPlants = repository.getAnimalPlantById(id)
-        model.value =animalsPlants
+        animalsPlants?.let{model.value=it}
     }
 }

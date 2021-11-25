@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
        viewModel= ViewModelProvider(this).get(MainViewModel::class.java)
 
         viewModel?.model?.observe(this) {
-                it?.icon?.let(icon::setImageResource)
-                heading?.text = it?.heading
-                description?.text = it?.description
+            icon?.setImageResource(it.icon)
+            heading?.text = it.heading
+            description?.text = it.description
         }
     }
 
