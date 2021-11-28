@@ -28,7 +28,7 @@ class SportAdapter(private val sports: List<Sport>) :
     inner class SportViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val icon = itemView.findViewById<ImageView>(R.id.icon)
-        private val title = itemView.findViewById<TextView>(R.id.title)
+        private val title = itemView.findViewById<TextView>(R.id.song)
         private val description = itemView.findViewById<TextView>(R.id.description)
 
         fun bind(sport: Sport) {
