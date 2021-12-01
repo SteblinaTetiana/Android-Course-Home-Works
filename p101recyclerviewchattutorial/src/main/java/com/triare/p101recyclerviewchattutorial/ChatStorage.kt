@@ -1,12 +1,12 @@
 package com.triare.p101recyclerviewchattutorial
 
 import android.content.Context
-import kotlin.random.Random
 import com.slmyldz.random.Randoms
+import kotlin.random.Random
 
 object ChatStorage {
 
-    fun random(context: Context) = MutableList(100){
+    fun random(context: Context) = MutableList(100) {
         Chat(
             it,
             Randoms.imageUrl(1024, 1024),
@@ -15,6 +15,5 @@ object ChatStorage {
             "10:45 PM",
             Random.nextBoolean()
         )
-
     }
 }

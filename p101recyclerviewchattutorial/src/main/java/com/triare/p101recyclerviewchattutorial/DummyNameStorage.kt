@@ -1,7 +1,6 @@
 package com.triare.p101recyclerviewchattutorial
 
 object DummyNameStorage {
-
     private val firstNames = listOf(
         "James",
         "Robert",

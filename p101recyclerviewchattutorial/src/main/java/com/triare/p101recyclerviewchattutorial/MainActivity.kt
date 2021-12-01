@@ -10,10 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerview = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerview.layoutManager = LinearLayoutManager(this)
-        recyclerview.adapter = ChatAdapter(ChatStorage.random(this))
-
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = ChatAdapter(ChatStorage.random(this))
     }
 }
