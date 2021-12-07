@@ -4,6 +4,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven { url "https://jitpack.io" }
     }
 }
 rootProject.name = "Android Course Home Works"
@@ -12,3 +13,9 @@ include ':p062ConstraintLayout'
 include ':p071directorys'
 include ':p081userprofile'
 include ':p091directorysviewmodel'
+include ':p102recyclerviewsport'
+include ':p103recyclerviewmusic'
+include ':p104recyclerviewfilms'
+include ':p105recyclerviewbook'
+include ':p106recyclerviewuser'
+include ':p101recyclerviewchattutorial'
