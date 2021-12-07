@@ -19,5 +19,4 @@ interface WeatherService {
         @Query("lat") lat: Float,
         @Query("lon") lon: Float
     ): Call<WeatherDto>
-
 }

@@ -1,5 +1,6 @@
 package com.triare.p111weather
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -24,7 +25,7 @@ class MainViewModel : ViewModel() {
 
     private fun getWeatherCurrent() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://weatherbit-v1-mashape.p.rapidapi.com")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -36,23 +37,24 @@ class MainViewModel : ViewModel() {
                     call: Call<WeatherDto>,
                     response: Response<WeatherDto>
                 ) {
-                    _weatherResult.value = response.body()
+                    response.body()?.let{_weatherResult.value=it}
                 }
 
                 override fun onFailure(call: Call<WeatherDto>, t: Throwable) {
+                    Log.e("Error", "Error current weather")
                 }
             })
     }
 
     private fun getWeatherHourly() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://weatherbit-v1-mashape.p.rapidapi.com")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val weatherService = retrofit.create(WeatherService::class.java)
 
-        weatherService.getWeatherCurrent(49.444431f, 32.059769f)
+        weatherService.getWeatherHourly(49.444431f, 32.059769f)
             .enqueue(object : Callback<WeatherDto> {
                 override fun onResponse(
                     call: Call<WeatherDto>,

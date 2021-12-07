@@ -5,95 +5,95 @@ import com.google.gson.annotations.SerializedName
 
 data class WeatherDto(
     @SerializedName("count")
-    val count: Int?,
+    val count: Int,
     @SerializedName("data")
-    val data: List<Data>?,
+    val data: List<Data>,
     @SerializedName("city_name")
-    val cityName: String?,
+    val cityName: String,
     @SerializedName("country_code")
-    val countryCode: String?,
+    val countryCode: String,
     @SerializedName("lat")
-    val lat: Double?,
+    val lat: Double,
     @SerializedName("lon")
-    val lon: Double?,
+    val lon: Double,
     @SerializedName("state_code")
-    val stateCode: String?,
+    val stateCode: String,
     @SerializedName("timezone")
-    val timezone: String?
+    val timezone: String
 )
 
 data class Data(
     @SerializedName("app_temp")
-    val appTemp: Double?,
+    val appTemp: Double,
     @SerializedName("clouds")
-    val clouds: Int?,
+    val clouds: Int,
     @SerializedName("clouds_hi")
-    val cloudsHi: Int?,
+    val cloudsHi: Int,
     @SerializedName("clouds_low")
-    val cloudsLow: Int?,
+    val cloudsLow: Int,
     @SerializedName("clouds_mid")
-    val cloudsMid: Int?,
+    val cloudsMid: Int,
     @SerializedName("datetime")
-    val datetime: String?,
+    val datetime: String,
     @SerializedName("dewpt")
-    val dewpt: Double?,
+    val dewpt: Double,
     @SerializedName("dhi")
-    val dhi: Int?,
+    val dhi: Int,
     @SerializedName("dni")
-    val dni: Int?,
+    val dni: Int,
     @SerializedName("ghi")
-    val ghi: Int?,
+    val ghi: Int,
     @SerializedName("ozone")
-    val ozone: Int?,
+    val ozone: Int,
     @SerializedName("pod")
-    val pod: String?,
+    val pod: String,
     @SerializedName("pop")
-    val pop: Int?,
+    val pop: Int,
     @SerializedName("precip")
-    val precip: Double?,
+    val precip: Double,
     @SerializedName("pres")
-    val pres: Double?,
+    val pres: Double,
     @SerializedName("rh")
-    val rh: Int?,
+    val rh: Int,
     @SerializedName("slp")
-    val slp: Double?,
+    val slp: Double,
     @SerializedName("snow")
-    val snow: Int?,
+    val snow: Int,
     @SerializedName("snow_depth")
-    val snowDepth: Int?,
+    val snowDepth: Int,
     @SerializedName("solar_rad")
-    val solarRad: Int?,
+    val solarRad: Int,
     @SerializedName("temp")
-    val temp: Double?,
+    val temp: Double,
     @SerializedName("timestamp_local")
-    val timestampLocal: String?,
+    val timestampLocal: String,
     @SerializedName("timestamp_utc")
-    val timestampUtc: String?,
+    val timestampUtc: String,
     @SerializedName("ts")
-    val ts: Int?,
+    val ts: Int,
     @SerializedName("uv")
-    val uv: Int?,
+    val uv: Int,
     @SerializedName("vis")
-    val vis: Double?,
+    val vis: Double,
     @SerializedName("weather")
-    val weather: Weather?,
+    val weather: Weather,
     @SerializedName("wind_cdir")
-    val windCdir: String?,
+    val windCdir: String,
     @SerializedName("wind_cdir_full")
-    val windCdirFull: String?,
+    val windCdirFull: String,
     @SerializedName("wind_dir")
-    val windDir: Int?,
+    val windDir: Int,
     @SerializedName("wind_gust_spd")
-    val windGustSpd: Double?,
+    val windGustSpd: Double,
     @SerializedName("wind_spd")
-    val windSpd: Double?
+    val windSpd: Double
 )
 
 data class Weather(
     @SerializedName("code")
-    val code: Int?,
+    val code: Int,
     @SerializedName("description")
-    val description: String?,
+    val description: String,
     @SerializedName("icon")
-    val icon: String?
+    val icon: String
 )

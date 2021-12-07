@@ -6,13 +6,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
-import com.triare.p111weather.model.Data
 import com.triare.p111weather.model.WeatherDto
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<MainViewModel>()
+    /*private val viewModel by viewModels<MainViewModel>()*/
+    private var viewModel: MainViewModel? = null
 
     private var date: TextView? = null
     private var icon: ImageView? = null
@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         initUI()
 
-        viewModel.weatherResult.observe(this) {
-            renderWeatherCurrent()
+        viewModel?.weatherResult?.observe(this) {
+            renderWeatherCurrent(it)
         }
     }
 
@@ -41,18 +41,27 @@ class MainActivity : AppCompatActivity() {
         windSpd = findViewById(R.id.wind_spd)
     }
 
-    private fun renderWeatherCurrent(data: Data) {
-        date?.text = data.datetime
+    private fun renderWeatherCurrent(weatherDto: WeatherDto) {
+        date?.text = weatherDto.data[0].datetime
         icon?.let {
             Glide.with(this.applicationContext)
                 .asBitmap()
                 .circleCrop()
-                .load(data.weather?.icon)
-                .into(it)
+                .load(IMG_URL + weatherDto.data[0].weather.icon + ".png")
+                .into(icon!!)
         }
-        temperature?.text = String.format("%d \u00B0" + "C", data.temp?.roundToInt())
-        tempFeelsLike?.text = String.format("%d \u00B0" + "C", data.temp?.roundToInt())
-        description?.text = data.weather?.description
-        windSpd?.text = String.format("Вітер: %.2f" + " км/год, ", data.windSpd, data.windCdirFull)
+        temperature?.text = String.format("%d \u00B0" + "C", weatherDto.data[0].temp.roundToInt())
+        tempFeelsLike?.text = String.format(
+            "відчувається як %d \u00B0" + "C",
+            weatherDto.data[0].temp.roundToInt(),
+            weatherDto.data[0].temp.roundToInt(),
+            weatherDto.data[0].temp.roundToInt()
+        )
+        description?.text = weatherDto.data[0].weather.description
+        windSpd?.text = String.format(
+            "Вітер: %.2f" + " км/год, ",
+            weatherDto.data[0].windSpd,
+            weatherDto.data[0].windCdirFull
+        )
     }
 }
