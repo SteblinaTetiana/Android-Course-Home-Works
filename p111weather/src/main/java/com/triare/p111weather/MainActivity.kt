@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.triare.p111weather.model.WeatherDto
 import kotlin.math.roundToInt
@@ -20,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     private var tempFeelsLike: TextView? = null
     private var description: TextView? = null
     private var windSpd: TextView? = null
+    /*private val weatherAdapter = WeatherHourlyAdapter(null)*/
+    private lateinit var weatherAdapter: WeatherHourlyAdapter
+    private  var weatherDto:WeatherDto? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +34,16 @@ class MainActivity : AppCompatActivity() {
 
         viewModel?.weatherResult?.observe(this) {
             renderWeatherCurrent(it)
+        }
+       /* val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        recyclerView.adapter = weatherAdapter*/
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+        weatherAdapter = WeatherHourlyAdapter(weatherDto)
+        recyclerView.apply {
+            adapter = weatherAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
         }
     }
 
