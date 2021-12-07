@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CountryActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/afghanistan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/afghanistan"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        app:icon="@drawable/afghanistan"
+        app:iconGravity="end"
+        app:iconTint="@null"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:background="@drawable/background_country_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/albania"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/albania"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:background="@drawable/background_country_button"
+        app:icon="@drawable/albania"
+        app:iconGravity="end"
+        app:iconTint="@null"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/algeria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/algeria"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:background="@drawable/background_country_button"
+        app:icon="@drawable/algeria"
+        app:iconGravity="end"
+        app:iconTint="@null"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/andorra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/andorra"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:background="@drawable/background_country_button"
+        app:icon="@drawable/andorra"
+        app:iconGravity="end"
+        app:iconTint="@null"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp" />
+</LinearLayout>

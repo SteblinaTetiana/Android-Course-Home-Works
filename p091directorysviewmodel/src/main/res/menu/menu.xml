@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group_animals">
+
+        <item
+            android:id="@+id/birds"
+            android:title="@string/birds" >
+            <menu >
+                <item
+                    android:id="@+id/sparrow"
+                    android:title="@string/sparrow">
+                </item>
+                <item
+                    android:id="@+id/oriole"
+                    android:title="@string/oriole">
+                </item>
+                <item
+                    android:id="@+id/magpie"
+                    android:title="@string/magpie">
+                </item>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/mammals"
+            android:title="@string/mammals" >
+            <menu >
+                <item
+                    android:id="@+id/squirrel"
+                    android:title="@string/squirrel">
+                </item>
+                <item
+                    android:id="@+id/bear"
+                    android:title="@string/bear">
+                </item>
+                <item
+                    android:id="@+id/fox"
+                    android:title="@string/fox">
+                </item>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/amphibians"
+            android:title="@string/amphibians" >
+            <menu >
+                <item
+                    android:id="@+id/toad"
+                    android:title="@string/toad">
+                </item>
+                <item
+                    android:id="@+id/salamander"
+                    android:title="@string/salamander">
+                </item>
+                <item
+                    android:id="@+id/newt"
+                    android:title="@string/newt">
+                </item>
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group_plants">
+    <item
+            android:id="@+id/trees"
+            android:title="@string/trees" >
+            <menu >
+                <item
+                    android:id="@+id/oak"
+                    android:title="@string/oak">
+                </item>
+                <item
+                    android:id="@+id/birch"
+                    android:title="@string/birch">
+                </item>
+                <item
+                    android:id="@+id/pine"
+                    android:title="@string/pine">
+                </item>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/flowers"
+            android:title="@string/flowers" >
+            <menu >
+                <item
+                    android:id="@+id/rose"
+                    android:title="@string/rose">
+                </item>
+                <item
+                    android:id="@+id/lilies"
+                    android:title="@string/lilies">
+                </item>
+                <item
+                    android:id="@+id/chrysanthemum"
+                    android:title="@string/chrysanthemum">
+                </item>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/bushes"
+            android:title="@string/bushes" >
+            <menu >
+                <item
+                    android:id="@+id/rosehip"
+                    android:title="@string/rosehip">
+                </item>
+                <item
+                    android:id="@+id/raspberries"
+                    android:title="@string/raspberries">
+                </item>
+                <item
+                    android:id="@+id/lilac"
+                    android:title="@string/lilac">
+                </item>
+            </menu>
+        </item>
+    </group>
+</menu>
