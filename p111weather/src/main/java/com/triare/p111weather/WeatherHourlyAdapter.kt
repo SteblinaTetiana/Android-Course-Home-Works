@@ -11,7 +11,7 @@ import com.triare.p111weather.model.Data
 import com.triare.p111weather.model.WeatherDto
 import kotlin.math.roundToInt
 
-class WeatherHourlyAdapter(private val weatherDto: WeatherDto?) :
+class WeatherHourlyAdapter(var data: List<Data>) :
     RecyclerView.Adapter<WeatherHourlyAdapter.WeatherHourlyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherHourlyViewHolder {
@@ -21,27 +21,21 @@ class WeatherHourlyAdapter(private val weatherDto: WeatherDto?) :
     }
 
     override fun onBindViewHolder(holder: WeatherHourlyViewHolder, position: Int) {
-        val weather = weatherDto?.data?.get(position)
-        if (weather != null) {
-            weatherDto?.let { holder.bind(it, weather) }
-        }
+        holder.bind(data[position])
     }
 
-    override fun getItemCount(): Int {
-        return weatherDto?.data?.size ?: 0
-    }
+    override fun getItemCount(): Int = data.size
 
     inner class WeatherHourlyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val icon = itemView.findViewById<ImageView>(R.id.icon)
-        private val temperature = itemView.findViewById<TextView>(R.id.temperature)
+        private val temperature = itemView.findViewById<TextView>(R.id.temperature_hourly)
         private val time = itemView.findViewById<TextView>(R.id.time)
 
         fun bind(
-            weatherDto: WeatherDto,
             data: Data
         ) {
-            time.text = weatherDto.timezone
+            time.text = data.timestampLocal
             temperature.text =
                 String.format("%d \u00B0" + "C", data.temp.roundToInt())
             icon?.let {

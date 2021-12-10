@@ -23,7 +23,7 @@ class MainViewModel : ViewModel() {
         getWeatherHourly()
     }
 
-    private fun getWeatherCurrent() {
+     private fun getWeatherCurrent() {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -37,11 +37,16 @@ class MainViewModel : ViewModel() {
                     call: Call<WeatherDto>,
                     response: Response<WeatherDto>
                 ) {
-                    response.body()?.let{_weatherResult.value=it}
+                    if (response.isSuccessful) {
+                        _weatherResult.value = response.body()
+                    } else {
+                        Log.d("Error", response.code().toString())
+                    }
                 }
 
                 override fun onFailure(call: Call<WeatherDto>, t: Throwable) {
-                    Log.e("Error", "Error current weather")
+                    Log.d("Error", "Error current")
+                    t.printStackTrace()
                 }
             })
     }
@@ -60,10 +65,16 @@ class MainViewModel : ViewModel() {
                     call: Call<WeatherDto>,
                     response: Response<WeatherDto>
                 ) {
-                    _weatherResult.value = response.body()
+                    if (response.isSuccessful) {
+                        _weatherResult.value = response.body()
+                    } else {
+                        Log.d("Error", response.code().toString())
+                    }
                 }
 
                 override fun onFailure(call: Call<WeatherDto>, t: Throwable) {
+                    Log.d("Error", "Error hourly")
+                    t.printStackTrace()
                 }
             })
     }

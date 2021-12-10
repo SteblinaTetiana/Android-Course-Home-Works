@@ -38,13 +38,13 @@ data class Data(
     @SerializedName("dewpt")
     val dewpt: Double,
     @SerializedName("dhi")
-    val dhi: Int,
+    val dhi: Double,
     @SerializedName("dni")
-    val dni: Int,
+    val dni: Double,
     @SerializedName("ghi")
-    val ghi: Int,
+    val ghi: Double,
     @SerializedName("ozone")
-    val ozone: Int,
+    val ozone: Double,
     @SerializedName("pod")
     val pod: String,
     @SerializedName("pop")
@@ -54,7 +54,7 @@ data class Data(
     @SerializedName("pres")
     val pres: Double,
     @SerializedName("rh")
-    val rh: Int,
+    val rh: Double,
     @SerializedName("slp")
     val slp: Double,
     @SerializedName("snow")
@@ -62,7 +62,7 @@ data class Data(
     @SerializedName("snow_depth")
     val snowDepth: Int,
     @SerializedName("solar_rad")
-    val solarRad: Int,
+    val solarRad: Double,
     @SerializedName("temp")
     val temp: Double,
     @SerializedName("timestamp_local")
@@ -72,7 +72,7 @@ data class Data(
     @SerializedName("ts")
     val ts: Int,
     @SerializedName("uv")
-    val uv: Int,
+    val uv: Double,
     @SerializedName("vis")
     val vis: Double,
     @SerializedName("weather")
