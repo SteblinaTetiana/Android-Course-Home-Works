@@ -1,7 +1,6 @@
 package com.triare.p111weather
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +22,7 @@ class MainViewModel : ViewModel() {
         getWeatherHourly()
     }
 
-     private fun getWeatherCurrent() {
+    private fun getWeatherCurrent() {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

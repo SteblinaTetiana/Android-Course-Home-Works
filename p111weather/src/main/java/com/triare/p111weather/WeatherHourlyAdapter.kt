@@ -8,7 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.triare.p111weather.model.Data
-import com.triare.p111weather.model.WeatherDto
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 class WeatherHourlyAdapter(var data: List<Data>) :
@@ -35,8 +36,11 @@ class WeatherHourlyAdapter(var data: List<Data>) :
         fun bind(
             data: Data
         ) {
-            time.text = data.timestampLocal
-            temperature.text =
+            val localDateTime: LocalDateTime = LocalDateTime.parse(data.timestampLocal)
+            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+            val output: String = formatter.format(localDateTime)
+            time?.text = output
+            temperature?.text =
                 String.format("%d \u00B0" + "C", data.temp.roundToInt())
             icon?.let {
                 Glide.with(itemView.context)
