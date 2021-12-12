@@ -56,17 +56,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun renderWeatherCurrent(weatherDto: WeatherDto) {
-        val localDateTime: LocalDateTime = LocalDateTime.parse(weatherDto.data[0].datetime)
-        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-        val output: String = formatter.format(localDateTime)
-        date?.text = output
+        /* val localDateTime: LocalDateTime = LocalDateTime.parse(weatherDto.data[0].datetime)
+         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+         val output: String = formatter.format(localDateTime) */
+        date?.text = weatherDto.data[0].datetime
         weatherAdapter.data = weatherDto.data
         weatherAdapter.notifyDataSetChanged()
         icon?.let {
-            Glide.with(this.applicationContext)
+            Glide.with(this)
                 .asBitmap()
-                .circleCrop()
-                .load(IMG_URL + weatherDto.data[0].weather.icon + ".png")
+                .load("https://www.weatherbit.io/static/img/icons/${weatherDto.data[0].weather.icon}.png")
                 .into(icon!!)
         }
         temperature?.text = String.format("%d \u00B0", weatherDto.data[0].temp.roundToInt())
