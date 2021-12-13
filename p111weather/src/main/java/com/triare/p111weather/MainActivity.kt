@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.triare.p111weather.model.WeatherDto
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -56,10 +55,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun renderWeatherCurrent(weatherDto: WeatherDto) {
-        /* val localDateTime: LocalDateTime = LocalDateTime.parse(weatherDto.data[0].datetime)
-         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-         val output: String = formatter.format(localDateTime) */
-        date?.text = weatherDto.data[0].datetime
+        if (weatherDto.data[0].datetime != null) {
+            val parser = SimpleDateFormat("yyyy-MM-dd:")
+            val formatter = SimpleDateFormat("dd.MM.yyyy")
+            val output: String = formatter.format(parser.parse(weatherDto.data[0].datetime))
+            date?.text = output
+        }
         weatherAdapter.data = weatherDto.data
         weatherAdapter.notifyDataSetChanged()
         icon?.let {

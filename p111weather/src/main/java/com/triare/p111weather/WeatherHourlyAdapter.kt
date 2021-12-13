@@ -35,7 +35,7 @@ class WeatherHourlyAdapter(var data: List<Data>) :
         fun bind(
             data: Data
         ) {
-            if (time != null) {
+            if (data.timestampLocal != null) {
                 val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 val formatter = SimpleDateFormat("HH:mm")
                 val output: String = formatter.format(parser.parse(data.timestampLocal))

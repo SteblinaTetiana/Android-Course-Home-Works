@@ -26,13 +26,13 @@ data class Data(
     @SerializedName("app_temp")
     val appTemp: Double,
     @SerializedName("clouds")
-    val clouds: Int,
+    val clouds: Double,
     @SerializedName("clouds_hi")
-    val cloudsHi: Int,
+    val cloudsHi: Double,
     @SerializedName("clouds_low")
-    val cloudsLow: Int,
+    val cloudsLow: Double,
     @SerializedName("clouds_mid")
-    val cloudsMid: Int,
+    val cloudsMid: Double,
     @SerializedName("datetime")
     val datetime: String,
     @SerializedName("dewpt")
@@ -48,7 +48,7 @@ data class Data(
     @SerializedName("pod")
     val pod: String,
     @SerializedName("pop")
-    val pop: Int,
+    val pop: Double,
     @SerializedName("precip")
     val precip: Double,
     @SerializedName("pres")
@@ -58,9 +58,9 @@ data class Data(
     @SerializedName("slp")
     val slp: Double,
     @SerializedName("snow")
-    val snow: Int,
+    val snow: Double,
     @SerializedName("snow_depth")
-    val snowDepth: Int,
+    val snowDepth: Double,
     @SerializedName("solar_rad")
     val solarRad: Double,
     @SerializedName("temp")
@@ -70,7 +70,7 @@ data class Data(
     @SerializedName("timestamp_utc")
     val timestampUtc: String,
     @SerializedName("ts")
-    val ts: Int,
+    val ts: Double,
     @SerializedName("uv")
     val uv: Double,
     @SerializedName("vis")
@@ -82,7 +82,7 @@ data class Data(
     @SerializedName("wind_cdir_full")
     val windCdirFull: String,
     @SerializedName("wind_dir")
-    val windDir: Int,
+    val windDir: Double,
     @SerializedName("wind_gust_spd")
     val windGustSpd: Double,
     @SerializedName("wind_spd")
