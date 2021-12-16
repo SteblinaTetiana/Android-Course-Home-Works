@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ЗЕМЛЕТРУСИ</string>
+    <string name="home">Головна</string>
+    <string name="recommendations">Загальні рекомендації</string>
+    <string name="about_us">Про нас</string>
+</resources>
