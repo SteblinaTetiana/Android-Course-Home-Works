@@ -1,7 +1,7 @@
 package com.triare.p121quakealert
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         setContentView(R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)

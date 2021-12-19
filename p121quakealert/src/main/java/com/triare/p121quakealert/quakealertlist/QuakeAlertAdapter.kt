@@ -7,10 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.triare.p121quakealert.R
 import com.triare.p121quakealert.model.Feature
-import com.triare.p121quakealert.model.Properties
 import java.text.SimpleDateFormat
+import kotlin.math.roundToInt
 
-class QuakeAlertAdapter(var features: List<Feature>):RecyclerView.Adapter<QuakeAlertAdapter.QuakeAlertViewHolder>() {
+class QuakeAlertAdapter(var features: List<Feature>) :
+    RecyclerView.Adapter<QuakeAlertAdapter.QuakeAlertViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuakeAlertViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -19,17 +20,15 @@ class QuakeAlertAdapter(var features: List<Feature>):RecyclerView.Adapter<QuakeA
     }
 
     override fun onBindViewHolder(holder: QuakeAlertViewHolder, position: Int) {
-        val properties = features[position]
-        if (properties != null) {
-            features.let { holder.bind(it) }
-        }
+        features[position].let { holder.bind(it) }
+
     }
 
     override fun getItemCount(): Int {
-        return features.size ?: 0
+        return features.size
     }
 
-    inner class QuakeAlertViewHolder(view:View):RecyclerView.ViewHolder(view) {
+    inner class QuakeAlertViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val time = view.findViewById<TextView>(R.id.time)
         private val locality = view.findViewById<TextView>(R.id.locality)
@@ -37,20 +36,23 @@ class QuakeAlertAdapter(var features: List<Feature>):RecyclerView.Adapter<QuakeA
         private val magnitude = view.findViewById<TextView>(R.id.magnitude)
 
         fun bind(
-            features: List<Feature>
+            features: Feature
         ) {
-            if (features.get(0).properties.time != null) {
+            if (features.properties.time != null) {
                 val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 val formatter = SimpleDateFormat("dd.MM.yyyy")
-                val output: String = formatter.format(parser.parse(features.get(0).properties.time))
+                val output: String = formatter.format(parser.parse(features.properties.time))
                 time.text = output
             }
-            locality?.text = features[0].properties.locality
-         /*   intensity?.text = properties.magnitude
-            magnitude?.text = properties.magnitude*/
+            locality?.text = features.properties.locality
+            intensity?.text = String.format(
+                "%d",
+                features.properties.magnitude.roundToInt()
+            )
+            magnitude?.text = String.format(
+                "%.1f",
+                features.properties.magnitude
+            )
         }
-
-
     }
-
 }
