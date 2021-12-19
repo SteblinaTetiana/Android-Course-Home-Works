@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Головна</string>
+    <string name="recommendations">Загальні рекомендації</string>
+    <string name="about_us">Про нас</string>
+</resources>

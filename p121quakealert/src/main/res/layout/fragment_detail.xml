@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:background="@color/white">
+
+  <TextView
+      android:id="@+id/detail_time"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="15dp"
+      android:layout_marginTop="15dp"
+      android:textColor="@android:color/black"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      android:drawableStart="@drawable/ic_time"
+      android:drawablePadding="5dp"
+      tools:text="22 дні тому" />
+
+  <TextView
+      android:id="@+id/detail_depth"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="15dp"
+      android:layout_marginTop="5dp"
+      android:textColor="@android:color/black"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/detail_time"
+      android:drawableStart="@drawable/ic_distance"
+      android:drawablePadding="5dp"
+      tools:text="Відстань до епіцентру: 32,7 км" />
+
+  <TextView
+      android:id="@+id/detail_text_view_intensity"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="15dp"
+      android:layout_marginTop="15dp"
+      android:text="@string/intensity"
+      android:textColor="#2B2B3D"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/detail_depth" />
+
+  <TextView
+      android:id="@+id/detail_text_view_magnitude"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="15dp"
+      android:layout_marginTop="15dp"
+      android:textColor="#2B2B3D"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/detail_depth"
+      android:text="@string/magnitude"
+      android:layout_marginEnd="45dp"/>
+
+  <TextView
+      android:id="@+id/detail_intensity"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="15dp"
+      android:layout_marginTop="5dp"
+      android:text="@string/intensity"
+      tools:text="Ледь відчутний"
+      tools:textColor="@color/purple_200"
+      android:textColor="@color/white"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/detail_text_view_intensity" />
+
+  <TextView
+      android:id="@+id/detail_magnitude"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="15dp"
+      android:layout_marginTop="5dp"
+      tools:text="1.0"
+      android:textColor="#2B2B3D"
+      android:drawableStart="@drawable/ic_power"
+      app:layout_constraintEnd_toEndOf="@+id/detail_text_view_magnitude"
+      app:layout_constraintStart_toStartOf="@+id/detail_text_view_magnitude"
+      app:layout_constraintTop_toBottomOf="@+id/detail_text_view_magnitude" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

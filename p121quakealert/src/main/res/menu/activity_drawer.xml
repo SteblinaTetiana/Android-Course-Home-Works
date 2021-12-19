@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-tools:showIn="navigation_view">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
 
-<group android:checkableBehavior="single">
-    <item
-        android:id="@+id/quakeAlertListFragment"
-        android:icon="@drawable/ic_home"
-        android:title="@string/home" />
-    <item
-        android:id="@+id/placesListFragment"
-        android:icon="@drawable/ic_recommendations"
-        android:title="@string/recommendations" />
-    <item
-        android:id="@+id/routeFragment"
-        android:icon="@drawable/ic_aboutus"
-        android:title="@string/about_us"/>
-</group>
+    <group android:checkableBehavior="single" >
+        <item
+            android:id="@+id/quakeAlertListFragment"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/generalRecommendationsFragment"
+            android:icon="@drawable/ic_recommendations"
+            android:title="@string/recommendations" />
+        <item
+            android:id="@+id/aboutusFragment"
+            android:icon="@drawable/ic_aboutus"
+            android:title="@string/about_us"/>
+    </group>
+
 </menu>
