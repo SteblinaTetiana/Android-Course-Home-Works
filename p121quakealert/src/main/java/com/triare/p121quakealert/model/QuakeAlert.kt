@@ -1,6 +1,7 @@
 package com.triare.p121quakealert.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class QuakeAlert(
     @SerializedName("features")
@@ -16,7 +17,7 @@ data class Feature(
     val type: String,
     @SerializedName("properties")
     val properties: Properties
-)
+) : Serializable
 
 data class Geometry(
     @SerializedName("coordinates")

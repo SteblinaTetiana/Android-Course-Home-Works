@@ -5,55 +5,51 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.triare.p121quakealert.model.Properties
+import java.text.SimpleDateFormat
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var properties: Properties? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        properties?.let { bind(it) }
+    }
+
+    private fun bind(properties: Properties){
+        val detailTime = view?.findViewById<TextView>(R.id.detail_time)
+        val detailDepth = view?.findViewById<TextView>(R.id.detail_depth)
+        val detailIntensity = view?.findViewById<TextView>(R.id.detail_intensity)
+        val detailMagnitude = view?.findViewById<TextView>(R.id.detail_magnitude)
+
+
+        if (properties.time != null) {
+            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            val formatter = SimpleDateFormat("dd.MM.yyyy")
+            val output: String = formatter.format(parser.parse(properties.time))
+            detailTime?.text = output
+        }
+        detailDepth?.text = String.format(
+            "Вітер: %.2f" + " км/год",
+           properties.depth
+        )
+     /*   detailIntensity?.text = String.format(
+            "%s",
+            *//*  dvo?.title, dvo?.color*//*
+        )*/
+        detailMagnitude?.text = String.format(
+            "%.1f",
+            properties.magnitude
+        )
     }
 }
