@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.triare.p121quakealert.DetailFragment
 import com.triare.p121quakealert.R
 import com.triare.p121quakealert.model.Feature
 import com.triare.p121quakealert.model.QuakeAlert
@@ -23,7 +24,8 @@ class QuakeAlertListFragment : Fragment(), QuakeAlertAdapter.OnItemClickListener
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
-        quakeAlertAdapter = QuakeAlertAdapter(quakeAlert?.features ?: emptyList(), clickListener = this)
+        quakeAlertAdapter =
+            QuakeAlertAdapter(quakeAlert?.features ?: emptyList(), clickListener = this)
         recyclerView.apply {
             adapter = quakeAlertAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -46,5 +48,6 @@ class QuakeAlertListFragment : Fragment(), QuakeAlertAdapter.OnItemClickListener
 
     override fun onClick(feature: Feature) {
         view?.let { viewModel.list(it) }
-        }
+        DetailFragment.newInstance(feature)
+    }
 }

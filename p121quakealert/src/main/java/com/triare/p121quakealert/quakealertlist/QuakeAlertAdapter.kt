@@ -1,5 +1,6 @@
 package com.triare.p121quakealert.quakealertlist
 
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.triare.p121quakealert.Magnitude
 import com.triare.p121quakealert.R
 import com.triare.p121quakealert.model.Feature
+import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.abs
 import kotlin.math.roundToInt
 
 class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemClickListener) :
@@ -40,8 +44,6 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
             view.setOnClickListener(this)
         }
 
-        private var magnitudes: Double? = null
-
         private val time = view.findViewById<TextView>(R.id.time)
         private val locality = view.findViewById<TextView>(R.id.locality)
         private val intensity = view.findViewById<TextView>(R.id.intensity)
@@ -50,18 +52,24 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
         fun bind(
             features: Feature
         ) {
-            val dvo = magnitudes?.let { initMagnitude(it) }
+            val dvo = initMagnitude(features.properties.magnitude)
             if (features.properties.time != null) {
-                val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-                val formatter = SimpleDateFormat("dd.MM.yyyy")
-                val output: String = formatter.format(parser.parse(features.properties.time))
-                time.text = output
+                val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                var dateStr = features.properties.time
+                var date = inputFormat.parse(dateStr)
+                var niceDateStr: String = DateUtils.getRelativeTimeSpanString(
+                    date.time,
+                    Calendar.getInstance().timeInMillis,
+                    DateUtils.DAY_IN_MILLIS
+                ) as String
+                time.text = niceDateStr
             }
             locality?.text = features.properties.locality
             intensity?.text = String.format(
                 "%s",
-                dvo?.title, dvo?.color
+                dvo.title, dvo.color
             )
+
             magnitude?.text = String.format(
                 "%.1f",
                 features.properties.magnitude
@@ -77,6 +85,7 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
                 else -> Magnitude.VERY_STRONG
             }
         }
+
         override fun onClick(v: View?) {
             clickListener.onClick(features[adapterPosition])
         }
