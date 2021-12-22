@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
-import com.triare.p121quakealert.R
 import com.triare.p121quakealert.api.QuakeAlertService
+import com.triare.p121quakealert.model.Feature
 import com.triare.p121quakealert.model.QuakeAlert
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,7 +52,11 @@ class QuakeAlertListViewModel : ViewModel() {
             })
     }
 
-    fun list(view: View) {
-        view.findNavController().navigate(R.id.action_quakeAlertListFragment_to_detailFragment)
+    fun list(view: View, feature: Feature) {
+        QuakeAlertListFragmentDirections.actionQuakeAlertListFragmentToDetailFragment(
+            feature
+        ).also {
+            view.findNavController().navigate(it)
+        }
     }
 }

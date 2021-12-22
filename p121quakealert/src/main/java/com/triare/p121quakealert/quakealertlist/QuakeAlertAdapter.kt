@@ -9,11 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.triare.p121quakealert.Magnitude
 import com.triare.p121quakealert.R
 import com.triare.p121quakealert.model.Feature
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.abs
-import kotlin.math.roundToInt
 
 class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemClickListener) :
     RecyclerView.Adapter<QuakeAlertAdapter.QuakeAlertViewHolder>() {
@@ -55,9 +52,9 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
             val dvo = initMagnitude(features.properties.magnitude)
             if (features.properties.time != null) {
                 val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                var dateStr = features.properties.time
-                var date = inputFormat.parse(dateStr)
-                var niceDateStr: String = DateUtils.getRelativeTimeSpanString(
+                val dateStr = features.properties.time
+                val date = inputFormat.parse(dateStr)
+                val niceDateStr: String = DateUtils.getRelativeTimeSpanString(
                     date.time,
                     Calendar.getInstance().timeInMillis,
                     DateUtils.DAY_IN_MILLIS
@@ -76,7 +73,13 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
             )
         }
 
-        private fun initMagnitude(magnitude: Double): Magnitude {
+        override fun onClick(v: View?) {
+            clickListener.onClick(features[adapterPosition])
+        }
+    }
+
+    companion object{
+        fun initMagnitude(magnitude: Double): Magnitude {
             return when (magnitude) {
                 in 1.0..1.9 -> Magnitude.SCARCELY_PARCEPTIBLE
                 in 2.0..2.9 -> Magnitude.WEAK
@@ -85,10 +88,5 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
                 else -> Magnitude.VERY_STRONG
             }
         }
-
-        override fun onClick(v: View?) {
-            clickListener.onClick(features[adapterPosition])
-        }
     }
-
 }
