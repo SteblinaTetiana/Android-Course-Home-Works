@@ -7,17 +7,17 @@
         <item
             android:id="@+id/quakeAlertListFragment"
             android:icon="@drawable/ic_home"
-            android:iconTint="@color/red"
+            android:iconTint="@color/splash_screen"
             android:title="@string/home" />
         <item
             android:id="@+id/generalRecommendationsFragment"
             android:icon="@drawable/ic_recommendations"
-            android:iconTint="@color/red"
+            android:iconTint="@color/splash_screen"
             android:title="@string/recommendations" />
         <item
             android:id="@+id/aboutusFragment"
             android:icon="@drawable/ic_aboutus"
-            android:iconTint="@color/red"
+            android:iconTint="@color/splash_screen"
             android:title="@string/about_us" />
     </group>
 

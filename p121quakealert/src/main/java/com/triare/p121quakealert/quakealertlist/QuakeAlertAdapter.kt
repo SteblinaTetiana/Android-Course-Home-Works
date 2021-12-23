@@ -62,7 +62,7 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
                 time.text = niceDateStr
             }
             locality?.text = features.properties.locality
-            intensity?.text = dvo.title.toString()
+            intensity?.text = dvo.title
             intensity?.setBackgroundColor(dvo.color)
             magnitude?.text = String.format(
                 "%.1f",
