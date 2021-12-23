@@ -27,33 +27,32 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            val detailTime = view.findViewById<TextView>(R.id.detail_time)
-            val detailDepth = view.findViewById<TextView>(R.id.detail_depth)
-            val detailIntensity = view.findViewById<TextView>(R.id.detail_intensity)
-            val detailMagnitude = view.findViewById<TextView>(R.id.detail_magnitude)
-        val dvo = featuresArgs.features?.properties?.let { QuakeAlertAdapter.initMagnitude(it.magnitude) }
-            if (featuresArgs.features?.properties?.time != null) {
-                val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                val dateStr = featuresArgs.features?.properties?.time
-                val date = inputFormat.parse(dateStr)
-                val niceDateStr: String = DateUtils.getRelativeTimeSpanString(
-                    date.time,
-                    Calendar.getInstance().timeInMillis,
-                    DateUtils.DAY_IN_MILLIS
-                ) as String
-                detailTime?.text = niceDateStr
-            }
-                detailDepth?.text = String.format(
-                    "Відстань до епіцентру: %.1f" + " км",
-                    featuresArgs.features?.properties?.depth
-                )
-                   detailIntensity?.text = String.format(
-                       "%s",
-                       dvo?.title, dvo?.color
-    )
-                detailMagnitude?.text = String.format(
-                    "%.1f",
-                    featuresArgs.features?.properties?.magnitude
-                )
+        val detailTime = view.findViewById<TextView>(R.id.detail_time)
+        val detailDepth = view.findViewById<TextView>(R.id.detail_depth)
+        val detailIntensity = view.findViewById<TextView>(R.id.detail_intensity)
+        val detailMagnitude = view.findViewById<TextView>(R.id.detail_magnitude)
+        val dvo =
+            featuresArgs.features?.properties?.let { QuakeAlertAdapter.initMagnitude(it.magnitude) }
+        if (featuresArgs.features?.properties?.time != null) {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            val dateStr = featuresArgs.features?.properties?.time
+            val date = inputFormat.parse(dateStr)
+            val niceDateStr: String = DateUtils.getRelativeTimeSpanString(
+                date.time,
+                Calendar.getInstance().timeInMillis,
+                DateUtils.DAY_IN_MILLIS
+            ) as String
+            detailTime?.text = niceDateStr
+        }
+        detailDepth?.text = String.format(
+            "Відстань до епіцентру: %.1f" + " км",
+            featuresArgs.features?.properties?.depth
+        )
+        detailIntensity?.text = dvo?.title.toString()
+        dvo?.color?.let { detailIntensity?.setBackgroundColor(it) }
+        detailMagnitude?.text = String.format(
+            "%.1f",
+            featuresArgs.features?.properties?.magnitude
+        )
     }
 }

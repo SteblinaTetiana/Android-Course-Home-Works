@@ -7,6 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="splash_screen">#ED3237</color>
+    <color name="main_screen">#F5F5F5</color>
+    <color name="status_bar">#292B2B3D</color>
 
     <color name="scarcely_parceptible_color">#8ACB79</color>
     <color name="weak_color">#73C7B3</color>
