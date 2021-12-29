@@ -1,5 +1,6 @@
 package com.triare.p121quakealert
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.LayoutInflater
@@ -49,7 +50,7 @@ class DetailFragment : Fragment() {
             featuresArgs.features?.properties?.depth
         )
         detailIntensity?.text = dvo?.title.toString()
-        dvo?.color?.let { detailIntensity?.setBackgroundColor(it) }
+        dvo?.color?.let { detailIntensity?.setBackgroundResource(it) }
         detailMagnitude?.text = String.format(
             "%.1f",
             featuresArgs.features?.properties?.magnitude

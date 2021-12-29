@@ -63,7 +63,7 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
             }
             locality?.text = features.properties.locality
             intensity?.text = dvo.title
-            intensity?.setBackgroundColor(dvo.color)
+            intensity?.setBackgroundResource(dvo.color)
             magnitude?.text = String.format(
                 "%.1f",
                 features.properties.magnitude
@@ -78,10 +78,10 @@ class QuakeAlertAdapter(var features: List<Feature>, val clickListener: OnItemCl
     companion object {
         fun initMagnitude(magnitude: Double): Magnitude {
             return when (magnitude) {
-                in 1.0..1.9 -> Magnitude.SCARCELY_PARCEPTIBLE
-                in 2.0..2.9 -> Magnitude.WEAK
-                in 3.0..4.4 -> Magnitude.AVERAGE
-                in 4.5..5.9 -> Magnitude.STRONG
+                in 1.0..1.99 -> Magnitude.SCARCELY_PARCEPTIBLE
+                in 2.0..2.99 -> Magnitude.WEAK
+                in 3.0..4.49 -> Magnitude.AVERAGE
+                in 4.5..5.99 -> Magnitude.STRONG
                 else -> Magnitude.VERY_STRONG
             }
         }
