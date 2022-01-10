@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/quakeAlertListFragment">
+
+    <fragment
+        android:id="@+id/quakeAlertListFragment"
+        android:name="com.triare.p121quakealert.quakealertlist.QuakeAlertListFragment"
+        android:label=""
+        tools:layout="@layout/quake_alert_list_fragment">
+        <action
+            android:id="@+id/action_quakeAlertListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.triare.p121quakealert.DetailFragment"
+        android:label=""
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="features"
+            app:argType="com.triare.p121quakealert.model.Feature"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/aboutusFragment"
+        android:name="com.triare.p121quakealert.AboutusFragment"
+        android:label=""
+        tools:layout="@layout/fragment_aboutus" />
+    <fragment
+        android:id="@+id/generalRecommendationsFragment"
+        android:name="com.triare.p121quakealert.GeneralRecommendationsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_general_recommendations" />
+</navigation>

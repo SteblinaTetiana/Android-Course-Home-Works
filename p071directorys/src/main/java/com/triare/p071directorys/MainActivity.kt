@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.sparrow -> {
                 image.setImageResource(R.drawable.sparrow)
-                heading.setText(resources.getString(R.string.sparrow))
+                heading.text = resources.getString(R.string.sparrow)
                 description.setText(R.string.description_sparrow)
                 true
             }
