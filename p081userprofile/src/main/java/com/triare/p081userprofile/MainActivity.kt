@@ -42,8 +42,10 @@ class MainActivity : AppCompatActivity() {
                         result.data?.getStringExtra("NAME")
                 }
                 CountryActivity.REQUEST_COUNTRY -> {
-                    findViewById<TextView>(R.id.textview_country).text =
-                        result.data?.getParcelableExtra<CountryActivity.Country>("COUNTRY").toString()
+                       val content =result.data?.getParcelableExtra<CountryActivity.Country>("COUNTRY")
+                    findViewById<TextView>(R.id.textview_country).text = content?.title
+                    findViewById<TextView>(R.id.textview_country).setCompoundDrawables(null, null,
+                        getDrawable(content!!.image), null)
                 }
             }
         }

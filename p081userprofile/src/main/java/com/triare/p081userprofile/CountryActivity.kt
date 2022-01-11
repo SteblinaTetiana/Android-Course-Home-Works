@@ -21,29 +21,25 @@ class CountryActivity : AppCompatActivity() {
         val algeria = findViewById<MaterialButton>(R.id.algeria)
         val andorra = findViewById<MaterialButton>(R.id.andorra)
 
-        val country = Country("Afghanistan", afghanistan.setCompoundDrawables(null, null,
-            getDrawable( R.drawable.afghanistan),null).hashCode())
-        val country1 = Country("Albania", albania.setCompoundDrawables(null, null,
-            getDrawable( R.drawable.albania),null).hashCode())
-        val country2 = Country("Algeria", algeria.setCompoundDrawables(null, null,
-            getDrawable( R.drawable.algeria),null).hashCode())
-        val country3 = Country("Andorra",andorra.setCompoundDrawables(null, null,
-            getDrawable( R.drawable.andorra),null).hashCode())
+        val countryAfghanistan = Country("Afghanistan", R.drawable.afghanistan)
+        val countryAlbania = Country("Albania", R.drawable.albania)
+        val countryAlgeria = Country("Algeria",  R.drawable.algeria)
+        val countryAndorra = Country("Andorra", R.drawable.andorra)
 
         afghanistan.setOnClickListener {
-             setResult(REQUEST_COUNTRY, Intent().putExtra("COUNTRY", country))
+             setResult(REQUEST_COUNTRY, Intent().putExtra("COUNTRY", countryAfghanistan))
             finish()
         }
         albania.setOnClickListener {
-            setResult(REQUEST_COUNTRY, Intent().putExtra("COUNTRY", country1))
+            setResult(REQUEST_COUNTRY, Intent().putExtra("COUNTRY", countryAlbania))
             finish()
         }
         algeria.setOnClickListener {
-            setResult(REQUEST_COUNTRY, Intent().putExtra("COUNTRY", country2))
+            setResult(REQUEST_COUNTRY, Intent().putExtra("COUNTRY", countryAlgeria))
             finish()
         }
         andorra.setOnClickListener {
-            setResult(REQUEST_COUNTRY, Intent().putExtra("COUNTRY", country3))
+            setResult(REQUEST_COUNTRY, Intent().putExtra("COUNTRY", countryAndorra))
             finish()
         }
     }
@@ -53,7 +49,7 @@ class CountryActivity : AppCompatActivity() {
         return true
     }
 
-@Parcelize
+    @Parcelize
     data class Country(val title: String, val image: Int):Parcelable
 
 
