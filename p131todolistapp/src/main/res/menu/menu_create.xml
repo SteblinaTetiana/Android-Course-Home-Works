@@ -6,7 +6,7 @@
         android:id="@+id/create">
     <item
         android:id="@+id/create_note"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_check"
         android:title="" />
 </group>
@@ -15,7 +15,7 @@
         android:id="@+id/edit">
         <item
             android:id="@+id/edit_note"
-            app:showAsAction="always"
+            app:showAsAction="ifRoom"
             android:icon="@drawable/ic_edit"
             android:title="" />
     </group>

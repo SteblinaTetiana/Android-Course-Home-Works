@@ -8,6 +8,7 @@
     <fragment
         android:id="@+id/toDoListFragment"
         android:name="com.triare.p131todolistapp.todolist.ToDoListFragment"
+        android:label=""
         tools:layout="@layout/to_do_list_fragment">
         <action
             android:id="@+id/action_toDoListFragment_to_createNoteFragment"
@@ -15,6 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
+        android:label=""
         android:name="com.triare.p131todolistapp.createnote.CreateNoteFragment"
         tools:layout="@layout/create_note_fragment" />
 </navigation>

@@ -43,23 +43,4 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         tools:text="Отримати задачу" />
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/appCompatCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox_create_note" />
-
-    <EditText
-        android:id="@+id/text_checked_view1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
-        android:textAppearance="@style/TextAppearance.App.Body1"
-        app:layout_constraintStart_toEndOf="@+id/checkBox_create_note"
-        app:layout_constraintTop_toBottomOf="@+id/text_checked_view"
-        tools:text="I" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,11 +12,10 @@ class ToDoListViewModel : ViewModel() {
     private val _toDoListResult = MutableLiveData<ListNoteDvo>()
     val toDoListResult: LiveData<ListNoteDvo> = _toDoListResult
 
-   /* fun list(view: View, listNoteDvo: ListNoteDvo) {
+    fun list(view: View) {
         ToDoListFragmentDirections.actionToDoListFragmentToCreateNoteFragment(
-            listNoteDvo
         ).also {
             view.findNavController().navigate(it)
         }
-    }*/
+    }
 }

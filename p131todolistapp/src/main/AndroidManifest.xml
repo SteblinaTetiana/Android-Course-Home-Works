@@ -7,10 +7,11 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidCourseHomeWorks">
+        android:theme="@style/Theme.MyApplication">
         <activity
             android:name="com.triare.p131todolistapp.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
