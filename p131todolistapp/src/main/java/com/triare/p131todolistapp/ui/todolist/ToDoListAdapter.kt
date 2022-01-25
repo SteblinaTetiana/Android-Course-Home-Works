@@ -1,4 +1,4 @@
-package com.triare.p131todolistapp.todolist
+package com.triare.p131todolistapp.ui.todolist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.triare.p131todolist.R
-import com.triare.p131todolistapp.model.ListNoteDvo
+import com.triare.p131todolistapp.data.model.ListNoteDvo
 
 class ToDoListAdapter(var listNote: List<ListNoteDvo>, val clickListener: OnItemClickListener) :
     RecyclerView.Adapter<ToDoListAdapter.ListNoteViewHolder>() {

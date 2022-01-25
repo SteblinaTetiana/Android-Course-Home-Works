@@ -1,4 +1,4 @@
-package com.triare.p131todolistapp.createnote
+package com.triare.p131todolistapp.ui.createnote
 
 import androidx.lifecycle.ViewModel
 

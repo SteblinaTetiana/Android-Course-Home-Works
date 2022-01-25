@@ -1,11 +1,11 @@
-package com.triare.p131todolistapp.todolist
+package com.triare.p131todolistapp.ui.todolist
 
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
-import com.triare.p131todolistapp.model.ListNoteDvo
+import com.triare.p131todolistapp.data.model.ListNoteDvo
 
 class ToDoListViewModel : ViewModel() {
 

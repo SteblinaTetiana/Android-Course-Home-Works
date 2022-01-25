@@ -2,4 +2,7 @@
     <string name="app_name">To do list</string>
     <string name="to_do_lists">Списки справ</string>
     <string name="title">Заголовок</string>
+    <string name="create_note">Зберегти</string>
+    <string name="delate_note">Видалити</string>
+    <string name="edit_note">Редагувати</string>
 </resources>

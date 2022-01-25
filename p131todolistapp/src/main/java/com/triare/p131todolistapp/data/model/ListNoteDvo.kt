@@ -1,4 +1,4 @@
-package com.triare.p131todolistapp.model
+package com.triare.p131todolistapp.data.model
 
 data class ListNoteDvo(
     val title: String,

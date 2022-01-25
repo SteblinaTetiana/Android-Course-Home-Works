@@ -1,4 +1,4 @@
-package com.triare.p131todolistapp.todolist
+package com.triare.p131todolistapp.ui.todolist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.triare.p131todolist.R
-import com.triare.p131todolistapp.model.ListNoteDvo
+import com.triare.p131todolistapp.data.model.ListNoteDvo
 
 
 class ToDoListFragment : Fragment(), ToDoListAdapter.OnItemClickListener {

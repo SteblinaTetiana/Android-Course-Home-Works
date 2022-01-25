@@ -3,13 +3,14 @@
     package="com.triare.p131todolist">
 
     <application
+        android:name="com.triare.p131todolistapp.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name="com.triare.p131todolistapp.MainActivity"
+            android:name="com.triare.p131todolistapp.ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar">
             <intent-filter>
