@@ -6,6 +6,6 @@ class NoteRepository {
 
     private val db = AppDatabase.getInstance()
 
-    fun getNotes() = db.listNoteDao().getAll()
+  /*  fun getNotes() = db.listNoteDao().getAll()*/
 
 }

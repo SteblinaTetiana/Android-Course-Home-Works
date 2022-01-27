@@ -1,17 +1,16 @@
 package com.triare.p131todolistapp.data.db
 
-import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.triare.p131todolistapp.App
-import com.triare.p131todolistapp.data.db.dao.ListNoteDao
-import com.triare.p131todolistapp.data.model.ListNoteDbo
+import com.triare.p131todolistapp.data.db.dao.CategoryDao
+import com.triare.p131todolistapp.data.model.CategoryDbo
 
-@Database(entities = [ListNoteDbo::class], version = 1)
+@Database(entities = [CategoryDbo::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {
 
-    abstract fun  listNoteDao():ListNoteDao
+    abstract fun  listNoteDao():CategoryDao
 
     companion object {
 

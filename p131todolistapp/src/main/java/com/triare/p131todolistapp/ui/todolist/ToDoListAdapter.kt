@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.triare.p131todolist.R
-import com.triare.p131todolistapp.data.model.ListNoteDvo
+import com.triare.p131todolistapp.data.model.CategoryDbo
 
-class ToDoListAdapter(var listNote: List<ListNoteDvo>, val clickListener: OnItemClickListener) :
+class ToDoListAdapter(var listCategory: List<CategoryDbo>, val clickListener: OnItemClickListener) :
     RecyclerView.Adapter<ToDoListAdapter.ListNoteViewHolder>() {
 
     private var title: TextView? = null
@@ -16,7 +16,7 @@ class ToDoListAdapter(var listNote: List<ListNoteDvo>, val clickListener: OnItem
     private var numberNote: TextView? = null
 
     interface OnItemClickListener {
-        fun onClick(listNote: ListNoteDvo)
+        fun onClick(category: CategoryDbo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListNoteViewHolder {
@@ -26,11 +26,11 @@ class ToDoListAdapter(var listNote: List<ListNoteDvo>, val clickListener: OnItem
     }
 
     override fun onBindViewHolder(holder: ListNoteViewHolder, position: Int) {
-        listNote[position].let { holder.bind(it) }
+        listCategory[position].let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int {
-        return listNote.size
+        return listCategory.size
     }
 
     inner class ListNoteViewHolder(view: View) : RecyclerView.ViewHolder(view),
@@ -48,15 +48,15 @@ class ToDoListAdapter(var listNote: List<ListNoteDvo>, val clickListener: OnItem
         }
 
         fun bind(
-            listNote: ListNoteDvo
+            listCategory: CategoryDbo
         ) {
-            title?.text = listNote.title
-            date?.text = listNote.date
-            numberNote?.text = listNote.numberNote
+            title?.text = listCategory.title
+            date?.text = listCategory.date
+            numberNote?.text = listCategory.numberNote
         }
 
         override fun onClick(v: View?) {
-            clickListener.onClick(listNote[adapterPosition])
+            clickListener.onClick(listCategory[adapterPosition])
         }
     }
 }

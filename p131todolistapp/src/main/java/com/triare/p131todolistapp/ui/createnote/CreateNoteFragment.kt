@@ -1,48 +1,88 @@
 package com.triare.p131todolistapp.ui.createnote
 
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.isVisible
+import android.view.LayoutInflater
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.triare.p131todolist.R
+import com.triare.p131todolistapp.data.model.TaskDbo
 
-class CreateNoteFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CreateNoteFragment()
-    }
+class CreateNoteFragment : Fragment(), CreateNoteAdapter.OnItemClickListener {
 
-    /*private val startForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-        { result: ActivityResult ->
-
-            when (result.resultCode) {
-                NameActivity.REQUEST_NAME -> {
-                    findViewById<TextView>(R.id.textview_name).text =
-                        result.data?.getStringExtra("NAME")
-                }
-            }
-        }*/
 
     private var viewModel: CreateNoteViewModel? = null
-    private var createNoteFragment: View? = null
+    private lateinit var createNoteAdapter: CreateNoteAdapter
+    private var taskDbo: List<TaskDbo>? = null
+    private var floatingButtonCreate: FloatingActionButton? = null
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUi()
+        initView()
+    }
+
+    private fun initUi() {
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view_create)
+        createNoteAdapter =
+            CreateNoteAdapter(taskDbo ?: emptyList(), clickListener = this)
+        recyclerView?.apply {
+            adapter = createNoteAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
+    private fun initView() {
+        floatingButtonCreate = view?.findViewById(R.id.floatingActionButton_create)
+        floatingButtonCreate?.setOnClickListener {
+          /*alertDialog()*/
+        }
+    }
+
+    /*private fun alertDialog() {
+        val li = LayoutInflater.from(getApplicationContext())
+        val promptsView: View = li.inflate(R.layout.alert_dialog, null)
+        val alertDialogBuilder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(
+            getApplicationContext()
+        )
+
+        alertDialogBuilder.setView(promptsView)
+        val userInput = promptsView.findViewById(R.id.etAlertDialog) as EditText
+
+        alertDialogBuilder
+            .setCancelable(false)
+            .setPositiveButton(
+                "Додати"
+            ) { dialog, id ->
+                Toast.makeText(
+                    getApplicationContext(),
+                    "Entered: " + userInput.text.toString(),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            .setNegativeButton("Відмінити"
+            ) { dialog, id -> dialog.cancel() }
+
+        val alertDialog: android.app.AlertDialog? = alertDialogBuilder.create()
+
+        alertDialog?.show()
+    }
+*/
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.create_note_fragment, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(this)[CreateNoteViewModel::class.java]
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -63,14 +103,19 @@ class CreateNoteFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.create -> {
+            R.id.create_note -> {
                 /*  val intentName = Intent(this, ToDoListFragment::class.java)
                   startForResult.launch(intentName)*/
                 true
             }
-            R.id.edit -> true
+            R.id.delate_note -> true
 
         }
         return super.onOptionsItemSelected(item)
+
+    }
+
+    override fun onClick(task: TaskDbo) {
+        TODO("Not yet implemented")
     }
 }
