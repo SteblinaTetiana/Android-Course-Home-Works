@@ -50,7 +50,7 @@ class CreateNoteAdapter(var listTasks: List<TaskDbo>, val clickListener: OnItemC
             listTask: TaskDbo
         ) {
             text?.text = listTask.text
-           /* isFinished?.text = listTask.isFinished*/
+            /* isFinished?.text = listTask.isFinished*/
         }
 
         override fun onClick(v: View?) {

@@ -32,6 +32,7 @@
 
     </style>
 
+    <!--Toolbar-->
     <style name="Theme.MyApplication.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -41,5 +42,22 @@
 
     <style name="Theme.MyApplication.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
         <item name="android:iconTint">@color/red</item>
+    </style>
+
+    <!--Alert Dialog-->
+    <style name="Theme.App.AlertDialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        ...
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+    </style>
+
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorSecondary">@color/red_light</item>
+        <item name="colorSurface">@color/red_light</item>
+        <item name="colorOnSurface">@color/red</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.App.Button</item>
     </style>
 </resources>
