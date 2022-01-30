@@ -1,11 +1,15 @@
-package com.triare.p131todolistapp.ui.createnote
+package com.triare.p131todolistapp.ui.tasks
 
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.view.LayoutInflater
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -15,11 +19,10 @@ import com.triare.p131todolistapp.data.db.dao.TaskDao
 import com.triare.p131todolistapp.data.model.TaskDbo
 
 
-class CreateNoteFragment : Fragment(), CreateNoteAdapter.OnItemClickListener {
+class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
 
-
-    private var viewModel: CreateNoteViewModel? = null
-    private lateinit var createNoteAdapter: CreateNoteAdapter
+    private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var tasksAdapter: TasksAdapter
     private var taskDbo: List<TaskDbo>? = null
     private var task: TaskDbo? = null
     private var floatingButtonCreate: FloatingActionButton? = null
@@ -27,16 +30,32 @@ class CreateNoteFragment : Fragment(), CreateNoteAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initUi()
+        initUi(view)
         initView()
+        initViewModel()
+
+       /* val toolbar: Toolbar = view.findViewById(R.id.toolbar)
+        toolbar.inflateMenu(R.menu.menu_edit)
+
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.edit_note -> isAdded
+            }
+            true
+
+        }*/
+
+        val tb = view.findViewById(R.id.toolbar) as Toolbar?
+        tb?.inflateMenu(R.menu.menu_edit)
+        tb?.setOnMenuItemClickListener { item -> onOptionsItemSelected(item) }
     }
 
-    private fun initUi() {
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view_create)
-        createNoteAdapter =
-            CreateNoteAdapter(taskDbo ?: emptyList(), clickListener = this)
+    private fun initUi(view: View) {
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_create)
+        tasksAdapter =
+            TasksAdapter(taskDbo ?: emptyList()/*, clickListener = this*/)
         recyclerView?.apply {
-            adapter = createNoteAdapter
+            adapter = tasksAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }
@@ -48,42 +67,32 @@ class CreateNoteFragment : Fragment(), CreateNoteAdapter.OnItemClickListener {
         }
     }
 
-    fun alertDialog() {
-        val li = LayoutInflater.from(context)
-        val promptsView: View = li.inflate(R.layout.alert_dialog, null)
+    private fun initViewModel() {
+        tasksViewModel = ViewModelProvider(this)[TasksViewModel::class.java]
+    }
+
+    private fun alertDialog() {
+        val layoutInflater = LayoutInflater.from(context)
+        val dialogLayout: View = layoutInflater.inflate(R.layout.alert_dialog, null)
         val alertDialogBuilder = context?.let {
             MaterialAlertDialogBuilder(
                 it, R.style.ThemeOverlay_App_MaterialAlertDialog
             )
         }
 
-        alertDialogBuilder?.setView(promptsView)
-        val userInput = promptsView.findViewById(R.id.etAlertDialog) as EditText
+        alertDialogBuilder?.setView(dialogLayout)
+        val userInput = dialogLayout.findViewById(R.id.etAlertDialog) as EditText
 
         alertDialogBuilder
             ?.setCancelable(false)
             ?.setPositiveButton(
                 "Додати"
             ) { dialog, id ->
-                task?.let { taskDao?.insert(it) }
-                userInput.text
-                /*val replyIntent = Intent()
-                val word = userInput.text.toString()
+                /* task?.let { taskDao?.insert(it) }*/
+                val text: TextView? = view?.findViewById(R.id.text_checked_view)
 
-                if (TextUtils.isEmpty(word)) {
-                    setResult(Fragment.RESULT_CANCELED, replyIntent)
-                } else {
-
-                    replyIntent.putExtra(EXTRA_REPLY, word)
-                    setResult(Fragment.RESULT_OK, replyIntent)
-                }
-                finish()
-*/
-                /* Toast.makeText(
-                     context,
-                     "Entered: " + userInput.text.toString(),
-                     Toast.LENGTH_LONG
-                 ).show()*/
+                tasksAdapter.text?.text = userInput.text.toString()
+                tasksViewModel.addTasks()
             }
             ?.setNegativeButton(
                 "Відмінити"
@@ -99,12 +108,22 @@ class CreateNoteFragment : Fragment(), CreateNoteAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.create_note_fragment, container, false)
+        return inflater.inflate(R.layout.task_fragment, container, false)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_create, menu)
-    }
+/*    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val tb = view?.findViewById(R.id.toolbar) as Toolbar
+            tb.inflateMenu(R.menu.menu_edit)
+            tb.setOnMenuItemClickListener { item -> onOptionsItemSelected(item!!) }
+        } else {
+            inflater.inflate(R.menu.menu_edit, menu)
+
+        }
+    }*/
+      override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+          inflater.inflate(R.menu.menu_edit, menu)
+      }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
 
@@ -132,7 +151,8 @@ class CreateNoteFragment : Fragment(), CreateNoteAdapter.OnItemClickListener {
 
     }
 
-    override fun onClick(task: TaskDbo) {
-        TODO("Not yet implemented")
-    }
+    /* override fun onClick(task: TaskDbo) {
+         TODO("Not yet implemented")
+     }*/
+
 }

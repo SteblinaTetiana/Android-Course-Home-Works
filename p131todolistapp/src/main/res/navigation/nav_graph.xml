@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/toDoListFragment">
+    app:startDestination="@id/categoryFragment">
 
     <fragment
-        android:id="@+id/toDoListFragment"
-        android:name="com.triare.p131todolistapp.ui.todolist.ToDoListFragment"
+        android:id="@+id/categoryFragment"
+        android:name="com.triare.p131todolistapp.ui.category.CategoryFragment"
         android:label="@string/to_do_lists"
-        tools:layout="@layout/to_do_list_fragment">
+        tools:layout="@layout/category_fragment">
         <action
-            android:id="@+id/action_toDoListFragment_to_createNoteFragment"
-            app:destination="@id/createNoteFragment" />
+            android:id="@+id/action_categoryFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createNoteFragment"
+        android:id="@+id/taskFragment"
         android:label=""
-        android:name="com.triare.p131todolistapp.ui.createnote.CreateNoteFragment"
-        tools:layout="@layout/create_note_fragment" />
+        android:name="com.triare.p131todolistapp.ui.tasks.TasksFragment"
+        tools:layout="@layout/task_fragment" />
 </navigation>

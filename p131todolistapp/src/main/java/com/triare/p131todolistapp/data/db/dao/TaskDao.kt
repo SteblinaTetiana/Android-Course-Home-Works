@@ -1,15 +1,17 @@
 package com.triare.p131todolistapp.data.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.triare.p131todolistapp.data.model.TaskDbo
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
 
     @Query("SELECT * FROM tasks WHERE categoryId = :categoryId ORDER BY id DESC")
-    fun getTasks(categoryId: Int): List<TaskDbo>
+    fun getTasks(categoryId: Int): LiveData<List<TaskDbo>>
 
     @Query("SELECT COUNT(*) FROM tasks WHERE categoryId = :categoryId")
     fun getTasksCount(categoryId: Int): Int

@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.toDoListFragment,
-                R.id.createNoteFragment
+                R.id.categoryFragment,
+                R.id.taskFragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

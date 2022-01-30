@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout_tasks"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.triare.p131todolistapp.ui.createnote.CreateNoteFragment">
+    tools:context="com.triare.p131todolistapp.ui.tasks.TasksFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -30,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            tools:listitem="@layout/create_list_item" />
+            tools:listitem="@layout/task_list_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton_create"
@@ -44,6 +45,6 @@
 
     </FrameLayout>
 
-    <include layout="@layout/content_main" />
+  <!--  <include layout="@layout/content_main" />-->
 
 </LinearLayout>

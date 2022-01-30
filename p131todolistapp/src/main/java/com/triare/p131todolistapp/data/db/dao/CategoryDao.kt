@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.triare.p131todolistapp.data.model.CategoryDbo
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {
@@ -17,6 +18,6 @@ interface CategoryDao {
     @Query("UPDATE categories SET title = :title WHERE id = :id")
     fun updateTitle(id: Int, title: String)
 
-    /*@Query("DELETE FROM tasks WHERE categoryId = :categoryId")
-    fun delete(categoryId: Int)*/
+    /*  @Query("DELETE FROM tasks WHERE categoryId = :categoryId")
+      fun delete(categoryId: Int)*/
 }

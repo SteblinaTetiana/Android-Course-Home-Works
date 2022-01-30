@@ -1,4 +1,4 @@
-package com.triare.p131todolistapp.ui.createnote
+package com.triare.p131todolistapp.ui.tasks
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,19 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.model.TaskDbo
 
-class CreateNoteAdapter(var listTasks: List<TaskDbo>, val clickListener: OnItemClickListener) :
-    RecyclerView.Adapter<CreateNoteAdapter.CreateNoteViewHolder>() {
+class TasksAdapter(var listTasks: List<TaskDbo>) :
+    RecyclerView.Adapter<TasksAdapter.CreateNoteViewHolder>() {
 
-    private var text: TextView? = null
+    var text: TextView? = null
     private var isFinished: CheckBox? = null
 
-    interface OnItemClickListener {
+    /*interface OnItemClickListener {
         fun onClick(task: TaskDbo)
     }
-
+*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreateNoteViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.create_list_item, parent, false)
+        val view = inflater.inflate(R.layout.task_list_item, parent, false)
         return CreateNoteViewHolder(view)
     }
 
@@ -42,7 +42,7 @@ class CreateNoteAdapter(var listTasks: List<TaskDbo>, val clickListener: OnItemC
         }
 
         private fun initView(view: View) {
-            text = view.findViewById(R.id.title)
+            text = view.findViewById(R.id.text_checked_view)
             isFinished = view.findViewById(R.id.checkBox_create_note)
         }
 
@@ -54,7 +54,7 @@ class CreateNoteAdapter(var listTasks: List<TaskDbo>, val clickListener: OnItemC
         }
 
         override fun onClick(v: View?) {
-            clickListener.onClick(listTasks[adapterPosition])
+            /*clickListener.onClick(listTasks[adapterPosition])*/
         }
     }
 }

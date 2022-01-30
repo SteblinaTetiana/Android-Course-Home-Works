@@ -4,24 +4,24 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.triare.p131todolistapp.App
-import com.triare.p131todolistapp.data.db.dao.CategoryDao
-import com.triare.p131todolistapp.data.model.CategoryDbo
+import com.triare.p131todolistapp.data.db.dao.TaskDao
+import com.triare.p131todolistapp.data.model.TaskDbo
 
-@Database(entities = [CategoryDbo::class], version = 1)
-abstract class AppDatabase: RoomDatabase() {
+@Database(entities = [TaskDbo::class], version = 1)
+abstract class AppDatabaseTasks : RoomDatabase() {
 
-    abstract fun  listNoteDao():CategoryDao
+    abstract fun tasksDao(): TaskDao
 
     companion object {
 
-        private var instance: AppDatabase? = null
+        private var instance: AppDatabaseTasks? = null
 
-        fun getInstance(): AppDatabase {
+        fun getInstanceTasks(): AppDatabaseTasks {
             if (instance == null) {
-                synchronized(AppDatabase::class.java) {
+                synchronized(AppDatabaseTasks::class.java) {
                     instance = Room.databaseBuilder(
-                       App.context,
-                        AppDatabase::class.java,
+                        App.context,
+                        AppDatabaseTasks::class.java,
                         "room"
                     )
                         .fallbackToDestructiveMigration()

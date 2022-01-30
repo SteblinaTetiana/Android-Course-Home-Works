@@ -1,4 +1,4 @@
-package com.triare.p131todolistapp.ui.todolist
+package com.triare.p131todolistapp.ui.category
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.model.CategoryDbo
 
-class ToDoListAdapter(var listCategory: List<CategoryDbo>, val clickListener: OnItemClickListener) :
-    RecyclerView.Adapter<ToDoListAdapter.ListNoteViewHolder>() {
+class CategoryAdapter(var listCategory: List<CategoryDbo>, val clickListener: OnItemClickListener) :
+    RecyclerView.Adapter<CategoryAdapter.ListNoteViewHolder>() {
 
     private var title: TextView? = null
     private var date: TextView? = null
