@@ -42,7 +42,7 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
         toolbar?.inflateMenu(R.menu.menu_edit)
 
         toolbar?.setOnMenuItemClickListener {
-            onOptionsItemSelected(it)
+            onToolbarMenuItemSelected(it)
         }
     }
 
@@ -138,17 +138,13 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
         return inflater.inflate(R.layout.task_fragment, container, false)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_edit, menu)
-    }
+//    override fun onPrepareOptionsMenu(menu: Menu) {
+//        toolbar?.menu?.findItem(R.id.create_note)?.isChecked = isVisible
+//        toolbar?.menu?.findItem(R.id.edit_note)?.isChecked = isVisible
+//        return super.onPrepareOptionsMenu(menu)
+//    }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        toolbar?.menu?.findItem(R.id.create_note)?.isChecked = isVisible
-        toolbar?.menu?.findItem(R.id.edit_note)?.isChecked = isVisible
-        return super.onPrepareOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    private fun onToolbarMenuItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.edit_note -> {
                 /*  item.isVisible = isEditing*/
