@@ -72,7 +72,10 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         categoryDetailViewModel = ViewModelProvider(this)[CategoryDetailViewModel::class.java]
 
         categoryDetailViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
-            tasks?.let { tasksAdapter.setTasks(it) }
+           /* tasks?.let { tasksAdapter.setTasks(it) }*/
+            tasksAdapter.text?.text = task?.text
+                tasksAdapter.isFinished?.isChecked = task?.isFinished == false
+             tasks?.let { tasksAdapter.update() }
         }
     }
 
@@ -92,6 +95,12 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
                 App.context.getString(R.string.add)
             ) { dialog, id ->
                 tasksAdapter.text?.text = userInput.text.toString()
+                categoryDetailViewModel.addData(
+                    task?.id ?: 0,
+                    task?.categoryId ?: 0,
+                    tasksAdapter.text?.text.toString(),
+                    tasksAdapter.isFinished?.isChecked == false
+                )
                 task?.let { categoryDetailViewModel.addTasks(task!!) }
                 /* tasksViewModel.updateTask(0, text = "00000");*/
                 tasksAdapter.update()

@@ -15,8 +15,8 @@ class TasksAdapter :
     RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
 
     var text: TextView? = null
-    private var isFinished: CheckBox? = null
-    private var buttonDelete: ImageButton? = null
+    var isFinished: CheckBox? = null
+    var buttonDelete: ImageButton? = null
     private var task = emptyList<TaskDbo>()
     private var categoryDetailViewModel: CategoryDetailViewModel? = null
     private var database: AppDatabase? = null
@@ -40,10 +40,10 @@ class TasksAdapter :
         return list.size
     }
 
-    internal fun setTasks(listTask: List<TaskDbo>) {
+  /*  internal fun setTasks(listTask: List<TaskDbo>) {
         task = listTask
         notifyDataSetChanged()
-    }
+    }*/
 
     fun update() {
         list.clear()

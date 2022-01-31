@@ -23,6 +23,24 @@ class CategoryDetailViewModel : ViewModel() {
         tasksRepository.getFinishedTasksCount(categoryId)
     }
 
+    fun addData(
+        id: Int,
+        categoryId: Int,
+        text: String,
+        isFinished: Boolean) {
+
+        val taskDbo = TaskDbo(id, categoryId, text, isFinished)
+
+            var actualId = id
+
+            if (id > 0) {
+                updateTask(id, text)
+            } else {
+                actualId = addTasks(taskDbo).hashCode()
+            }
+
+    }
+
     fun addTasks(taskDbo: TaskDbo) {
         tasksRepository.addTasks(taskDbo)
     }
