@@ -9,5 +9,5 @@ data class CategoryDbo(
     val id: Int = 0,
     val title: String,
     val date: String,
-    val numberNote: String,
+    /*val numberNote: String,*/
 )

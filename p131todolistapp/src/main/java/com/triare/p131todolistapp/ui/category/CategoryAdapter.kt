@@ -9,23 +9,23 @@ import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.model.CategoryDbo
 
 class CategoryAdapter(var listCategory: List<CategoryDbo>, val clickListener: OnItemClickListener) :
-    RecyclerView.Adapter<CategoryAdapter.ListNoteViewHolder>() {
+    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private var title: TextView? = null
     private var date: TextView? = null
-    private var numberNote: TextView? = null
+   /* private var numberNote: TextView? = null*/
 
     interface OnItemClickListener {
         fun onClick(category: CategoryDbo)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListNoteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_item, parent, false)
-        return ListNoteViewHolder(view)
+        return CategoryViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ListNoteViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         listCategory[position].let { holder.bind(it) }
     }
 
@@ -33,7 +33,7 @@ class CategoryAdapter(var listCategory: List<CategoryDbo>, val clickListener: On
         return listCategory.size
     }
 
-    inner class ListNoteViewHolder(view: View) : RecyclerView.ViewHolder(view),
+    inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view),
         View.OnClickListener {
 
         init {
@@ -44,7 +44,7 @@ class CategoryAdapter(var listCategory: List<CategoryDbo>, val clickListener: On
         private fun initView(view: View) {
             title = view.findViewById(R.id.title)
             date = view.findViewById(R.id.date)
-            numberNote = view.findViewById(R.id.number)
+            /*numberNote = view.findViewById(R.id.number)*/
         }
 
         fun bind(
@@ -52,7 +52,7 @@ class CategoryAdapter(var listCategory: List<CategoryDbo>, val clickListener: On
         ) {
             title?.text = listCategory.title
             date?.text = listCategory.date
-            numberNote?.text = listCategory.numberNote
+            /*numberNote?.text = listCategory.numberNote*/
         }
 
         override fun onClick(v: View?) {

@@ -11,18 +11,17 @@ import com.triare.p131todolistapp.data.repository.CategoryRepository
 class CategoryViewModel : ViewModel() {
 
     private val categoryRepository = CategoryRepository()
-    private val categoryDbo: CategoryDbo? = null
 
     private val _toDoListResult = MutableLiveData<CategoryDbo>()
     val toDoListResult: LiveData<CategoryDbo> = _toDoListResult
 
-    fun addCategory() {
-        categoryDbo?.let { categoryRepository.addCategories(it) }
+    fun addCategory(categoryDbo: CategoryDbo) {
+        categoryRepository.addCategories(categoryDbo)
     }
 
-  /*  fun deleteAll() {
-        userRepository.deleteAll()
-    }*/
+    fun updateTitle(id: Int, title: String) {
+        categoryRepository.updateTitle(id, title)
+    }
 
     fun list(view: View) {
         CategoryFragmentDirections.actionCategoryFragmentToTaskFragment(

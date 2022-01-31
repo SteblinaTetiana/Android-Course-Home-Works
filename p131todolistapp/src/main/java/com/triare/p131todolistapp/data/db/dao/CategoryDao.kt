@@ -2,9 +2,9 @@ package com.triare.p131todolistapp.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.triare.p131todolistapp.data.model.CategoryDbo
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {
@@ -12,7 +12,7 @@ interface CategoryDao {
     @Query("SELECT * FROM categories ORDER BY id DESC")
     fun getCategories(): List<CategoryDbo>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(categoryDbo: CategoryDbo)
 
     @Query("UPDATE categories SET title = :title WHERE id = :id")

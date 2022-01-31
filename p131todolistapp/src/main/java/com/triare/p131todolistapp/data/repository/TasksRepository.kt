@@ -1,20 +1,32 @@
 package com.triare.p131todolistapp.data.repository
 
 import androidx.lifecycle.LiveData
-import com.triare.p131todolistapp.data.db.AppDatabaseTasks
+import com.triare.p131todolistapp.data.db.AppDatabase
 import com.triare.p131todolistapp.data.model.TaskDbo
 
 class TasksRepository {
 
-    private val categoryId: Int? = null
+    private val dbTasks = AppDatabase.getInstance()
 
-    private val dbTasks = AppDatabaseTasks.getInstanceTasks()
+    private val tasksDao = dbTasks.taskDao()
 
-    private val tasksDao = dbTasks.tasksDao()
+    val allTasks: LiveData<List<TaskDbo>> = tasksDao.getAllTasks()
 
-   /* val allTasks: LiveData<List<TaskDbo>> = categoryId?.let { tasksDao.getTasks(it) }!!*/
+    fun getTasks(categoryId: Int) {
+        tasksDao.getTasks(categoryId)
+    }
 
-    /*fun getTasks() = tasksDao.getTasks()*/
+    fun insertTitle(id: Int, title: String) {
+        tasksDao.insertTitle(id, title)
+    }
+
+    fun getTasksCount(categoryId: Int) {
+        tasksDao.getTasksCount(categoryId)
+    }
+
+    fun getFinishedTasksCount(categoryId: Int) {
+        tasksDao.getFinishedTasksCount(categoryId)
+    }
 
     fun addTasks(taskDbo: TaskDbo) {
         tasksDao.insert(taskDbo)

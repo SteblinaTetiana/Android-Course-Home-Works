@@ -2,4 +2,7 @@
 <resources>
     <string name="to_do_lists">Списки справ</string>
     <string name="create_note">Зберегти</string>
+    <string name="add">Додати</string>
+    <string name="delete">Видалити</string>
+    <string name="title">Заголовок</string>
 </resources>
