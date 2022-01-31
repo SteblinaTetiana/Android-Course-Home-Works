@@ -1,4 +1,4 @@
-package com.triare.p131todolistapp.ui.tasks
+package com.triare.p131todolistapp.ui.category_detail
 
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +18,7 @@ class TasksAdapter :
     private var isFinished: CheckBox? = null
     private var buttonDelete: ImageButton? = null
     private var task = emptyList<TaskDbo>()
-    private var tasksViewModel: TasksViewModel? = null
+    private var categoryDetailViewModel: CategoryDetailViewModel? = null
     private var database: AppDatabase? = null
     private val list: MutableList<TaskDbo> = mutableListOf()
 

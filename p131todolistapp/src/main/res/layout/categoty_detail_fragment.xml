@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linear_layout_tasks"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.triare.p131todolistapp.ui.tasks.TasksFragment">
+    tools:context="com.triare.p131todolistapp.ui.category_detail.CategoryDetailFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:navigationIcon="@drawable/ic_back"
-        app:title=""/>
+        app:navigationIcon="@drawable/ic_back" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/title_task"

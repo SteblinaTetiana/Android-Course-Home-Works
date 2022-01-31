@@ -1,10 +1,10 @@
-package com.triare.p131todolistapp.ui.tasks
+package com.triare.p131todolistapp.ui.category_detail
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import android.provider.SyncStateContract.Helpers.update
-import android.view.*
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -19,11 +19,12 @@ import com.triare.p131todolist.R
 import com.triare.p131todolistapp.App
 import com.triare.p131todolistapp.data.db.dao.TaskDao
 import com.triare.p131todolistapp.data.model.TaskDbo
+import com.triare.p131todolistapp.ui.MainActivity
 
 
-class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
+class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
 
-    private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var categoryDetailViewModel: CategoryDetailViewModel
     private lateinit var tasksAdapter: TasksAdapter
     private var taskDbo: List<TaskDbo>? = null
     private var task: TaskDbo? = null
@@ -37,19 +38,23 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
         initView()
         initViewModel()
 
-        toolbar = view.findViewById(R.id.toolbar)
+        setToolbar()
+    }
+
+    private fun setToolbar() {
+        toolbar = view?.findViewById(R.id.toolbar)
 
         toolbar?.inflateMenu(R.menu.menu_edit)
 
-        toolbar?.setOnMenuItemClickListener {
-            onToolbarMenuItemSelected(it)
+        toolbar?.setNavigationOnClickListener {
+            startActivity(Intent(context, MainActivity::class.java))
         }
+        onToolbarMenuItemSelected()
     }
 
     private fun initUi(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_create)
-        tasksAdapter =
-            TasksAdapter(/*, clickListener = this*/)
+        tasksAdapter = TasksAdapter(/*, clickListener = this*/)
         recyclerView?.apply {
             adapter = tasksAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -64,9 +69,9 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
     }
 
     private fun initViewModel() {
-        tasksViewModel = ViewModelProvider(this)[TasksViewModel::class.java]
+        categoryDetailViewModel = ViewModelProvider(this)[CategoryDetailViewModel::class.java]
 
-        tasksViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+        categoryDetailViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
             tasks?.let { tasksAdapter.setTasks(it) }
         }
     }
@@ -75,9 +80,7 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
         val layoutInflater = LayoutInflater.from(context)
         val dialogLayout: View = layoutInflater.inflate(R.layout.alert_dialog_add, null)
         val alertDialogBuilder = context?.let {
-            MaterialAlertDialogBuilder(
-                it, R.style.ThemeOverlay_App_MaterialAlertDialog
-            )
+            MaterialAlertDialogBuilder(it, R.style.ThemeOverlay_App_MaterialAlertDialog)
         }
 
         alertDialogBuilder?.setView(dialogLayout)
@@ -89,8 +92,8 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
                 App.context.getString(R.string.add)
             ) { dialog, id ->
                 tasksAdapter.text?.text = userInput.text.toString()
-                task?.let { tasksViewModel.addTasks(task!!) }
-               /* tasksViewModel.updateTask(0, text = "00000");*/
+                task?.let { categoryDetailViewModel.addTasks(task!!) }
+                /* tasksViewModel.updateTask(0, text = "00000");*/
                 tasksAdapter.update()
             }
             ?.setNegativeButton(
@@ -107,9 +110,7 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
         val layoutInflater = LayoutInflater.from(context)
         val dialogLayout: View = layoutInflater.inflate(R.layout.alert_dialog_delete, null)
         val alertDialogBuilder = context?.let {
-            MaterialAlertDialogBuilder(
-                it, R.style.ThemeOverlay_App_MaterialAlertDialog
-            )
+            MaterialAlertDialogBuilder(it, R.style.ThemeOverlay_App_MaterialAlertDialog)
         }
 
         alertDialogBuilder?.setView(dialogLayout)
@@ -118,7 +119,7 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
             ?.setPositiveButton(
                 getString(R.string.delete)
             ) { dialog, id ->
-                task?.let { tasksViewModel.delete(id) }
+                task?.let { categoryDetailViewModel.delete(id) }
                 tasksAdapter.notifyDataSetChanged()
             }
             ?.setNegativeButton(
@@ -135,37 +136,31 @@ class TasksFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.task_fragment, container, false)
+        return inflater.inflate(R.layout.categoty_detail_fragment, container, false)
     }
 
-//    override fun onPrepareOptionsMenu(menu: Menu) {
-//        toolbar?.menu?.findItem(R.id.create_note)?.isChecked = isVisible
-//        toolbar?.menu?.findItem(R.id.edit_note)?.isChecked = isVisible
-//        return super.onPrepareOptionsMenu(menu)
-//    }
+    private fun onToolbarMenuItemSelected() {
+        toolbar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.edit_note -> {
+                    /*  item.isVisible = isEditing*/
+                    /*  val intentName = Intent(this, ToDoListFragment::class.java)
+                      startForResult.launch(intentName)*/
+                    categoryDetailViewModel.addTitle(0, title = "add title")
+                    Toast.makeText(context, "Add Title", Toast.LENGTH_SHORT).show()
+                    true
+                }
 
-    private fun onToolbarMenuItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.edit_note -> {
-                /*  item.isVisible = isEditing*/
-                /*  val intentName = Intent(this, ToDoListFragment::class.java)
-                  startForResult.launch(intentName)*/
-                tasksViewModel.addTitle(0, title = "add title")
-                Toast.makeText(context, "Add Title", Toast.LENGTH_SHORT).show()
-                true
-            }
+                R.id.create_note -> {
 
-            R.id.create_note -> {
+                    true
+                }
 
-                true
-            }
-
-            R.id.delate_note -> {
-                alertDialogDelete()
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
+                R.id.delate_note -> {
+                    alertDialogDelete()
+                    true
+                }
+                else -> true
             }
         }
     }

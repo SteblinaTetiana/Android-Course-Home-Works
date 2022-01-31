@@ -1,11 +1,11 @@
-package com.triare.p131todolistapp.ui.tasks
+package com.triare.p131todolistapp.ui.category_detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.triare.p131todolistapp.data.model.TaskDbo
 import com.triare.p131todolistapp.data.repository.TasksRepository
 
-class TasksViewModel : ViewModel() {
+class CategoryDetailViewModel : ViewModel() {
 
     private val tasksRepository = TasksRepository()
 

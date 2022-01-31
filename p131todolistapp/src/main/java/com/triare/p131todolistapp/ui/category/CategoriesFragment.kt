@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,10 +15,10 @@ import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.model.CategoryDbo
 
 
-class CategoryFragment : Fragment(), CategoryAdapter.OnItemClickListener {
+class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
 
-    private lateinit var categoryViewModel: CategoryViewModel
-    private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var categoriesViewModel: CategoriesViewModel
+    private lateinit var categoriesAdapter: CategoriesAdapter
     private var categoryDbo: List<CategoryDbo>? = null
     private var category: CategoryDbo? = null
     private var floatingButton: FloatingActionButton? = null
@@ -32,10 +33,10 @@ class CategoryFragment : Fragment(), CategoryAdapter.OnItemClickListener {
 
     private fun initUi() {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view)
-        categoryAdapter =
-            CategoryAdapter(categoryDbo ?: emptyList(), clickListener = this)
+        categoriesAdapter =
+            CategoriesAdapter(categoryDbo ?: emptyList(), clickListener = this)
         recyclerView?.apply {
-            adapter = categoryAdapter
+            adapter = categoriesAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }
@@ -43,22 +44,29 @@ class CategoryFragment : Fragment(), CategoryAdapter.OnItemClickListener {
     private fun initView() {
         floatingButton = view?.findViewById(R.id.floatingActionButton)
         floatingButton?.setOnClickListener {
-            findNavController().navigate(R.id.taskFragment)
+            findNavController().navigate(R.id.tasksFragment)
         }
     }
 
     private fun initViewModel() {
-        categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
+        categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.category_fragment, container, false)
+        return inflater.inflate(R.layout.categories_fragment, container, false)
     }
 
     override fun onClick(category: CategoryDbo) {
-        view?.let { categoryViewModel.list(it) }
+        view?.let { list(it) }
+    }
+
+    fun list(view: View) {
+        CategoriesFragmentDirections.actionCategoriesFragmentToTasksFragment(
+        ).also {
+            view.findNavController().navigate(it)
+        }
     }
 }

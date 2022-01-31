@@ -2,12 +2,9 @@ package com.triare.p131todolistapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.triare.p131todolist.R
@@ -26,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         setupNavigation()
-
     }
 
     private fun setupNavigation() {
@@ -35,16 +31,10 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.categoryFragment,
-                R.id.taskFragment
+                R.id.categoriesFragment,
+                R.id.tasksFragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
 }

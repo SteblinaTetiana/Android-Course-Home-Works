@@ -8,7 +8,7 @@ import androidx.navigation.findNavController
 import com.triare.p131todolistapp.data.model.CategoryDbo
 import com.triare.p131todolistapp.data.repository.CategoryRepository
 
-class CategoryViewModel : ViewModel() {
+class CategoriesViewModel : ViewModel() {
 
     private val categoryRepository = CategoryRepository()
 
@@ -23,10 +23,4 @@ class CategoryViewModel : ViewModel() {
         categoryRepository.updateTitle(id, title)
     }
 
-    fun list(view: View) {
-        CategoryFragmentDirections.actionCategoryFragmentToTaskFragment(
-        ).also {
-            view.findNavController().navigate(it)
-        }
-    }
 }
