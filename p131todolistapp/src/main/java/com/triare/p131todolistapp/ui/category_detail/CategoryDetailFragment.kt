@@ -18,27 +18,32 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.App
 import com.triare.p131todolistapp.data.db.dao.TaskDao
+import com.triare.p131todolistapp.data.model.CategoryDbo
 import com.triare.p131todolistapp.data.model.TaskDbo
 import com.triare.p131todolistapp.ui.MainActivity
+import com.triare.p131todolistapp.ui.category.CategoriesViewModel
+import com.triare.p131todolistapp.utils.DateUtils
 
 
 class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
 
     private lateinit var categoryDetailViewModel: CategoryDetailViewModel
+    private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var tasksAdapter: TasksAdapter
     private var taskDbo: List<TaskDbo>? = null
     private var task: TaskDbo? = null
+    private var categoryDbo: CategoryDbo? = null
     private var toolbar: MaterialToolbar? = null
     private var floatingButtonCreate: FloatingActionButton? = null
     private var taskDao: TaskDao? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setToolbar()
         initUi(view)
         initView()
         initViewModel()
 
-        setToolbar()
     }
 
     private fun setToolbar() {
@@ -47,9 +52,14 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         toolbar?.inflateMenu(R.menu.menu_edit)
 
         toolbar?.setNavigationOnClickListener {
-            startActivity(Intent(context, MainActivity::class.java))
+            initIntentToMainActivity()
         }
+
         onToolbarMenuItemSelected()
+    }
+
+    private fun initIntentToMainActivity() {
+        startActivity(Intent(context, MainActivity::class.java))
     }
 
     private fun initUi(view: View) {
@@ -71,11 +81,13 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
     private fun initViewModel() {
         categoryDetailViewModel = ViewModelProvider(this)[CategoryDetailViewModel::class.java]
 
+        categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
+
         categoryDetailViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
-           /* tasks?.let { tasksAdapter.setTasks(it) }*/
+            /* tasks?.let { tasksAdapter.setTasks(it) }*/
             tasksAdapter.text?.text = task?.text
-                tasksAdapter.isFinished?.isChecked = task?.isFinished == false
-             tasks?.let { tasksAdapter.update() }
+            tasksAdapter.isFinished?.isChecked = task?.isFinished == false
+            tasks?.let { tasksAdapter.update() }
         }
     }
 
@@ -102,7 +114,6 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
                     tasksAdapter.isFinished?.isChecked == false
                 )
                 task?.let { categoryDetailViewModel.addTasks(task!!) }
-                /* tasksViewModel.updateTask(0, text = "00000");*/
                 tasksAdapter.update()
             }
             ?.setNegativeButton(
@@ -130,6 +141,7 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
             ) { dialog, id ->
                 task?.let { categoryDetailViewModel.delete(id) }
                 tasksAdapter.notifyDataSetChanged()
+                initIntentToMainActivity()
             }
             ?.setNegativeButton(
                 App.context.getString(R.string.cancel)
@@ -152,10 +164,13 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         toolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.edit_note -> {
-                    /*  item.isVisible = isEditing*/
-                    /*  val intentName = Intent(this, ToDoListFragment::class.java)
-                      startForResult.launch(intentName)*/
-                    categoryDetailViewModel.addTitle(0, title = "add title")
+                    val title = view?.findViewById<EditText>(R.id.title_task)
+                    categoriesViewModel.addCategory(
+                        0,
+                        title?.text.toString(),
+                        DateUtils.parseDate()
+                    )
+                    initIntentToMainActivity()
                     Toast.makeText(context, "Add Title", Toast.LENGTH_SHORT).show()
                     true
                 }
@@ -173,5 +188,4 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
             }
         }
     }
-
 }

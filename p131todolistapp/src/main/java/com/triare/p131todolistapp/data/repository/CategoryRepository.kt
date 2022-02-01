@@ -1,7 +1,9 @@
 package com.triare.p131todolistapp.data.repository
 
+import androidx.lifecycle.LiveData
 import com.triare.p131todolistapp.data.db.AppDatabase
 import com.triare.p131todolistapp.data.model.CategoryDbo
+import com.triare.p131todolistapp.data.model.TaskDbo
 
 class CategoryRepository {
 
@@ -9,7 +11,7 @@ class CategoryRepository {
 
     private val categoryDao = dbCategory.categoryDao()
 
-    fun getCategories() = categoryDao.getCategories()
+    fun getCategories(): LiveData<List<CategoryDbo>> = categoryDao.getCategories()
 
     fun addCategories(categoryDbo: CategoryDbo) {
         categoryDao.insert(categoryDbo)

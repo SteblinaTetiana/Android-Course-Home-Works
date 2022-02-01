@@ -14,19 +14,14 @@
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/ic_back" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/title_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textAppearance="@style/TextAppearance.App.Headline5">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="@string/title" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:hint="@string/title"
+        android:textAppearance="@style/TextAppearance.App.Headline5"
+        android:textSize="16sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -51,7 +46,5 @@
             android:src="@drawable/ic_plus" />
 
     </FrameLayout>
-
-    <!--  <include layout="@layout/content_main" />-->
 
 </LinearLayout>

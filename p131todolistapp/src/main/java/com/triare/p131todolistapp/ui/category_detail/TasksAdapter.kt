@@ -1,5 +1,6 @@
 package com.triare.p131todolistapp.ui.category_detail
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,7 +74,7 @@ class TasksAdapter :
             database!!.taskDao().updateTask(0, text.toString());
             text?.text = listTask.text
             update()
-            /*      try {
+                  try {
                       if (isFinished != null){
                           isFinished!!.isChecked = true
                           text?.paintFlags = text?.paintFlags?.or(Paint.STRIKE_THRU_TEXT_FLAG)!!
@@ -84,8 +85,8 @@ class TasksAdapter :
                   }catch (e: NullPointerException){}
 
                   buttonDelete?.setOnClickListener {
-                      tasksViewModel?.delete(taskId = 0 )
-                  }*/
+                      categoryDetailViewModel?.delete(listTask.id)
+                  }
         }
 
 

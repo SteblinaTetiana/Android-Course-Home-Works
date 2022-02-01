@@ -50,6 +50,12 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
 
     private fun initViewModel() {
         categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
+
+        categoriesViewModel.allCategories.observe(viewLifecycleOwner) {
+            categoriesAdapter.title?.text = category?.title
+            categoriesAdapter.date?.text = category?.date
+            category?.let { categoriesViewModel.updateTitle(it.id, it.title) }
+        }
     }
 
     override fun onCreateView(

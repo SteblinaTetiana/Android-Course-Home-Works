@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.model.CategoryDbo
 
-class CategoriesAdapter(var listCategory: List<CategoryDbo>, val clickListener: OnItemClickListener) :
+class CategoriesAdapter(
+    var listCategory: List<CategoryDbo>,
+    val clickListener: OnItemClickListener
+) :
     RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
-    private var title: TextView? = null
-    private var date: TextView? = null
-   /* private var numberNote: TextView? = null*/
+    var title: TextView? = null
+    var date: TextView? = null
+    /* private var numberNote: TextView? = null*/
 
     interface OnItemClickListener {
         fun onClick(category: CategoryDbo)

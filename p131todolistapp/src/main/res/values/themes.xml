@@ -38,12 +38,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.MyApplication.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.MyApplication.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:iconTint">@color/red</item>
-    </style>
-
     <!--Alert Dialog-->
     <style name="Theme.App.AlertDialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
         ...
