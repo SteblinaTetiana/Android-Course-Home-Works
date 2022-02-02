@@ -12,7 +12,7 @@ class CategoriesViewModel : ViewModel() {
     val allCategories: LiveData<List<CategoryDbo>> = categoryRepository.getCategories()
 
     fun addCategory(id: Int, title: String, date: String) {
-        categoryRepository.addCategories(CategoryDbo(0, title, date))
+        categoryRepository.addCategories(CategoryDbo(id, title, date))
     }
 
     fun updateTitle(id: Int, title: String) {

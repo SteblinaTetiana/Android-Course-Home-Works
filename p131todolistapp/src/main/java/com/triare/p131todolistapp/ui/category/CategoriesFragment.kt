@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.model.CategoryDbo
+import com.triare.p131todolistapp.utils.DateUtils
 
 
 class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
@@ -54,6 +56,12 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
         categoriesViewModel.allCategories.observe(viewLifecycleOwner) {
             categoriesAdapter.title?.text = category?.title
             categoriesAdapter.date?.text = category?.date
+            val title = view?.findViewById<TextView>(R.id.title)
+            categoriesViewModel.addCategory(
+                0,
+                title?.text.toString(),
+                DateUtils.parseDate()
+            )
             category?.let { categoriesViewModel.updateTitle(it.id, it.title) }
         }
     }

@@ -170,6 +170,7 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
                         title?.text.toString(),
                         DateUtils.parseDate()
                     )
+                    task?.let { it1 -> categoryDetailViewModel.addTasks(it1) }
                     initIntentToMainActivity()
                     Toast.makeText(context, "Add Title", Toast.LENGTH_SHORT).show()
                     true
