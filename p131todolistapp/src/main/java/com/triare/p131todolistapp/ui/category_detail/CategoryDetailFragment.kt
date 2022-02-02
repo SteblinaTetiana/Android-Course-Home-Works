@@ -139,7 +139,7 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
             ?.setPositiveButton(
                 getString(R.string.delete)
             ) { dialog, id ->
-                task?.let { categoryDetailViewModel.delete(id) }
+                task?.let { categoryDetailViewModel.deleteByCategory(id) }
                 tasksAdapter.notifyDataSetChanged()
                 initIntentToMainActivity()
             }

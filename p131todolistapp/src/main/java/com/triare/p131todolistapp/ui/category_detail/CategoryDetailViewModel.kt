@@ -45,12 +45,6 @@ class CategoryDetailViewModel : ViewModel() {
         tasksRepository.addTasks(taskDbo)
     }
 
-
-    fun addTitle(id: Int, title: String) {
-        tasksRepository.insertTitle(id, title)
-    }
-
-
     fun updateTask(id: Int, text: String) {
         tasksRepository.updateTask(id, text)
     }

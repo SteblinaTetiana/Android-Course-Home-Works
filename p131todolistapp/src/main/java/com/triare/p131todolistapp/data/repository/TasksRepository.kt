@@ -16,10 +16,6 @@ class TasksRepository {
         tasksDao.getTasks(categoryId)
     }
 
-    fun insertTitle(id: Int, title: String) {
-        tasksDao.insertTitle(id, title)
-    }
-
     fun getTasksCount(categoryId: Int) {
         tasksDao.getTasksCount(categoryId)
     }

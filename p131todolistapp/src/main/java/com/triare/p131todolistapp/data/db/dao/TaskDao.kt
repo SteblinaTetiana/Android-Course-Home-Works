@@ -25,9 +25,6 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(taskDbo: TaskDbo)
 
-    @Query("UPDATE categories SET title = :title WHERE id = :id")
-    fun insertTitle(id: Int, title: String)
-
     @Query("UPDATE tasks SET text = :text WHERE id = :id")
     fun updateTask(id: Int, text: String)
 
