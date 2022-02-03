@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.db.AppDatabase
 import com.triare.p131todolistapp.data.model.TaskDbo
+import java.util.*
 
 class TasksAdapter :
     RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
@@ -18,10 +19,9 @@ class TasksAdapter :
     var text: TextView? = null
     var isFinished: CheckBox? = null
     var buttonDelete: ImageButton? = null
-    private var task = emptyList<TaskDbo>()
     private var categoryDetailViewModel: CategoryDetailViewModel? = null
     private var database: AppDatabase? = null
-    private val list: MutableList<TaskDbo> = mutableListOf()
+    private var listTasks: MutableList<TaskDbo> = mutableListOf()
 
     /*interface OnItemClickListener {
         fun onClick(task: TaskDbo)
@@ -34,21 +34,22 @@ class TasksAdapter :
     }
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
-        list[position].let { holder.bind(it) }
+        listTasks[position].let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return listTasks.size
     }
 
-  /*  internal fun setTasks(listTask: List<TaskDbo>) {
-        task = listTask
-        notifyDataSetChanged()
-    }*/
-
-    fun update() {
-        list.clear()
-        database?.taskDao()?.getTasks(categoryId = 0)?.let { list.addAll(it) }
+    fun update(dataItemList: List<TaskDbo>) {
+        /*list.clear()*/
+        /* database?.taskDao()?.getTasks(categoryId = 0)?.let { list.addAll(it) }*/
+        /*   notifyDataSetChanged()*/
+        if (listTasks == null) {
+            listTasks = ArrayList<TaskDbo>()
+        }
+        listTasks.clear()
+        listTasks.addAll(dataItemList)
         notifyDataSetChanged()
     }
 
@@ -73,20 +74,21 @@ class TasksAdapter :
             database = AppDatabase.getInstance()
             database!!.taskDao().updateTask(0, text.toString());
             text?.text = listTask.text
-            update()
-                  try {
-                      if (isFinished != null){
-                          isFinished!!.isChecked = true
-                          text?.paintFlags = text?.paintFlags?.or(Paint.STRIKE_THRU_TEXT_FLAG)!!
-                      }else{
-                          isFinished!!.isChecked = false
-                          isFinished?.paintFlags = isFinished?.paintFlags?.and(Paint.STRIKE_THRU_TEXT_FLAG.inv())!!
-                      }
-                  }catch (e: NullPointerException){}
+            try {
+                if (isFinished != null) {
+                    isFinished!!.isChecked = true
+                    text?.paintFlags = text?.paintFlags?.or(Paint.STRIKE_THRU_TEXT_FLAG)!!
+                } else {
+                    isFinished!!.isChecked = false
+                    isFinished?.paintFlags =
+                        isFinished?.paintFlags?.and(Paint.STRIKE_THRU_TEXT_FLAG.inv())!!
+                }
+            } catch (e: NullPointerException) {
+            }
 
-                  buttonDelete?.setOnClickListener {
-                      categoryDetailViewModel?.delete(listTask.id)
-                  }
+            buttonDelete?.setOnClickListener {
+                categoryDetailViewModel?.delete(listTask.id)
+            }
         }
 
 
