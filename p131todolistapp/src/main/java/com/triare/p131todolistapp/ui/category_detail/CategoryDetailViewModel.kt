@@ -27,17 +27,18 @@ class CategoryDetailViewModel : ViewModel() {
         id: Int,
         categoryId: Int,
         text: String,
-        isFinished: Boolean) {
+        isFinished: Boolean
+    ) {
 
         val taskDbo = TaskDbo(id, categoryId, text, isFinished)
 
-            var actualId = id
+        var actualId = id
 
-            if (id > 0) {
-                updateTask(id, text)
-            } else {
-                actualId = addTasks(taskDbo).hashCode()
-            }
+        if (id > 0) {
+            updateTask(id, text)
+        } else {
+            actualId = addTasks(taskDbo).hashCode()
+        }
 
     }
 
@@ -45,7 +46,7 @@ class CategoryDetailViewModel : ViewModel() {
         tasksRepository.addTasks(taskDbo)
     }
 
-    fun updateTask(id: Int, text: String) {
+    private fun updateTask(id: Int, text: String) {
         tasksRepository.updateTask(id, text)
     }
 

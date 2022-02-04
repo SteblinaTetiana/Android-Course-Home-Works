@@ -1,4 +1,4 @@
-package com.triare.p131todolistapp.ui.category
+package com.triare.p131todolistapp.ui.categories
 
 import android.view.LayoutInflater
 import android.view.View

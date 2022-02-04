@@ -1,5 +1,6 @@
 package com.triare.p131todolistapp.ui.category_detail
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,12 +18,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.App
-import com.triare.p131todolistapp.data.db.dao.TaskDao
-import com.triare.p131todolistapp.data.model.CategoryDbo
 import com.triare.p131todolistapp.data.model.TaskDbo
 import com.triare.p131todolistapp.ui.MainActivity
-import com.triare.p131todolistapp.ui.category.CategoriesViewModel
+import com.triare.p131todolistapp.ui.categories.CategoriesViewModel
 import com.triare.p131todolistapp.utils.DateUtils
+import java.util.*
 
 
 class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
@@ -30,12 +30,12 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
     private lateinit var categoryDetailViewModel: CategoryDetailViewModel
     private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var tasksAdapter: TasksAdapter
-    private var taskDbo: List<TaskDbo>? = null
+    private var dataItems: List<TaskDbo>? = null
+    private var listTasks: MutableList<TaskDbo> = mutableListOf()
     private var task: TaskDbo? = null
-    private var categoryDbo: CategoryDbo? = null
     private var toolbar: MaterialToolbar? = null
     private var floatingButtonCreate: FloatingActionButton? = null
-    private var taskDao: TaskDao? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,6 +44,19 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         initView()
         initViewModel()
 
+    }
+
+    private fun update(dataItems: List<TaskDbo>) {
+
+        if (listTasks == null) {
+            listTasks = ArrayList<TaskDbo>()
+        }
+        listTasks.clear()
+        listTasks.addAll(dataItems)
+
+        if (tasksAdapter != null) {
+            tasksAdapter.update(dataItems)
+        }
     }
 
     private fun setToolbar() {
@@ -65,6 +78,10 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
     private fun initUi(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_create)
         tasksAdapter = TasksAdapter(/*, clickListener = this*/)
+
+        if (listTasks != null) {
+            tasksAdapter.update(listTasks)
+        }
         recyclerView?.apply {
             adapter = tasksAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -87,7 +104,8 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
             /* tasks?.let { tasksAdapter.setTasks(it) }*/
             tasksAdapter.text?.text = task?.text
             tasksAdapter.isFinished?.isChecked = task?.isFinished == false
-            tasks?.let { tasksAdapter.update() }
+            /* tasks?.let { listTasks.let { it1 -> tasksAdapter.update(it1) } }*/
+            dataItems?.let { update(it) }
         }
     }
 
@@ -114,7 +132,10 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
                     tasksAdapter.isFinished?.isChecked == false
                 )
                 task?.let { categoryDetailViewModel.addTasks(task!!) }
-                tasksAdapter.update()
+                /*  tasksAdapter.update()*/
+                if (listTasks != null) {
+                    tasksAdapter.update(listTasks)
+                }
             }
             ?.setNegativeButton(
                 App.context.getString(R.string.cancel)
@@ -125,6 +146,7 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         alertDialog?.show()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun alertDialogDelete() {
 
         val layoutInflater = LayoutInflater.from(context)
