@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
@@ -22,7 +25,6 @@ import com.triare.p131todolistapp.data.model.TaskDbo
 import com.triare.p131todolistapp.ui.MainActivity
 import com.triare.p131todolistapp.ui.categories.CategoriesViewModel
 import com.triare.p131todolistapp.utils.DateUtils
-import java.util.*
 
 
 class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
@@ -30,8 +32,9 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
     private lateinit var categoryDetailViewModel: CategoryDetailViewModel
     private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var tasksAdapter: TasksAdapter
-    private var dataItems: List<TaskDbo>? = null
-    private var listTasks: MutableList<TaskDbo> = mutableListOf()
+
+    /* private var dataItems: List<TaskDbo>? = null*/
+    /*private var listTasks: MutableList<TaskDbo> = mutableListOf()*/
     private var task: TaskDbo? = null
     private var toolbar: MaterialToolbar? = null
     private var floatingButtonCreate: FloatingActionButton? = null
@@ -46,7 +49,7 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
 
     }
 
-    private fun update(dataItems: List<TaskDbo>) {
+    /*private fun update(dataItems: List<TaskDbo>) {
 
         if (listTasks == null) {
             listTasks = ArrayList<TaskDbo>()
@@ -55,20 +58,48 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         listTasks.addAll(dataItems)
 
         if (tasksAdapter != null) {
-            tasksAdapter.update(dataItems)
+        *//*    tasksAdapter.update(dataItems)*//*
         }
-    }
+    }*/
 
     private fun setToolbar() {
         toolbar = view?.findViewById(R.id.toolbar)
+        (activity as AppCompatActivity?)?.supportActionBar?.hide()
 
         toolbar?.inflateMenu(R.menu.menu_edit)
 
         toolbar?.setNavigationOnClickListener {
-            initIntentToMainActivity()
+           /* initIntentToMainActivity()*/
+            findNavController().popBackStack()
         }
 
-        onToolbarMenuItemSelected()
+        toolbar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.edit_note -> {
+                    val title = view?.findViewById<EditText>(R.id.title_task)
+                    categoriesViewModel.addCategory(
+                        0,
+                        title?.text.toString(),
+                        DateUtils.parseDate()
+                    )
+                    task?.let { it1 -> categoryDetailViewModel.addTasks(it1) }
+                    Toast.makeText(context, "Add Title", Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+                    true
+                }
+
+                R.id.create_note -> {
+
+                    true
+                }
+
+                R.id.delate_note -> {
+                    alertDialogDelete()
+                    true
+                }
+                else -> true
+            }
+        }
     }
 
     private fun initIntentToMainActivity() {
@@ -79,9 +110,9 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_create)
         tasksAdapter = TasksAdapter(/*, clickListener = this*/)
 
-        if (listTasks != null) {
-            tasksAdapter.update(listTasks)
-        }
+        /*  if (listTasks != null) {
+       *//*       tasksAdapter.update(listTasks)*//*
+        }*/
         recyclerView?.apply {
             adapter = tasksAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -98,14 +129,13 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
     private fun initViewModel() {
         categoryDetailViewModel = ViewModelProvider(this)[CategoryDetailViewModel::class.java]
 
-        categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
+          categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
 
-        categoryDetailViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
-            /* tasks?.let { tasksAdapter.setTasks(it) }*/
-            tasksAdapter.text?.text = task?.text
-            tasksAdapter.isFinished?.isChecked = task?.isFinished == false
+        categoryDetailViewModel.allTasks.observe(viewLifecycleOwner) {
             /* tasks?.let { listTasks.let { it1 -> tasksAdapter.update(it1) } }*/
-            dataItems?.let { update(it) }
+            tasksAdapter.listTasks = it
+
+            /*    dataItems?.let { update(it) }*/
         }
     }
 
@@ -124,18 +154,19 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
             ?.setPositiveButton(
                 App.context.getString(R.string.add)
             ) { dialog, id ->
-                tasksAdapter.text?.text = userInput.text.toString()
-                categoryDetailViewModel.addData(
-                    task?.id ?: 0,
-                    task?.categoryId ?: 0,
-                    tasksAdapter.text?.text.toString(),
-                    tasksAdapter.isFinished?.isChecked == false
-                )
+                val text = view?.findViewById<TextView>(R.id.text_checked_view)
+                text?.text = userInput.text.toString()
+                /* categoryDetailViewModel.addData(
+                     task?.id ?: 0,
+                     task?.categoryId ?: 0,
+                     tasksAdapter.text?.text.toString(),
+                     tasksAdapter.isFinished?.isChecked == false
+                 )*/
                 task?.let { categoryDetailViewModel.addTasks(task!!) }
                 /*  tasksAdapter.update()*/
-                if (listTasks != null) {
-                    tasksAdapter.update(listTasks)
-                }
+                /*  if (listTasks != null) {
+                  *//*    tasksAdapter.update(listTasks)*//*
+                }*/
             }
             ?.setNegativeButton(
                 App.context.getString(R.string.cancel)
@@ -180,35 +211,5 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
     ): View? {
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.categoty_detail_fragment, container, false)
-    }
-
-    private fun onToolbarMenuItemSelected() {
-        toolbar?.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.edit_note -> {
-                    val title = view?.findViewById<EditText>(R.id.title_task)
-                    categoriesViewModel.addCategory(
-                        0,
-                        title?.text.toString(),
-                        DateUtils.parseDate()
-                    )
-                    task?.let { it1 -> categoryDetailViewModel.addTasks(it1) }
-                    initIntentToMainActivity()
-                    Toast.makeText(context, "Add Title", Toast.LENGTH_SHORT).show()
-                    true
-                }
-
-                R.id.create_note -> {
-
-                    true
-                }
-
-                R.id.delate_note -> {
-                    alertDialogDelete()
-                    true
-                }
-                else -> true
-            }
-        }
     }
 }

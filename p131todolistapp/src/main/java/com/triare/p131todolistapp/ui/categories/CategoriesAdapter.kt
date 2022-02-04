@@ -47,7 +47,6 @@ class CategoriesAdapter(
             view.setOnClickListener {
                 clickListener.onClick(listCategory)
             }
-            /*numberNote?.text = listCategory.numberNote*/
         }
     }
 }

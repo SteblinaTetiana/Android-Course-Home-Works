@@ -21,7 +21,6 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
 
     private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var categoriesAdapter: CategoriesAdapter
-    private var category: CategoryDbo? = null
     private var floatingButton: FloatingActionButton? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
