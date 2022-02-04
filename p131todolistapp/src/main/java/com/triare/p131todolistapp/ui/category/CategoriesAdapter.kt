@@ -9,14 +9,15 @@ import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.model.CategoryDbo
 
 class CategoriesAdapter(
-    var listCategory: List<CategoryDbo>,
     val clickListener: OnItemClickListener
 ) :
     RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
-    var title: TextView? = null
-    var date: TextView? = null
-    /* private var numberNote: TextView? = null*/
+    var listCategories: List<CategoryDbo> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     interface OnItemClickListener {
         fun onClick(category: CategoryDbo)
@@ -29,37 +30,24 @@ class CategoriesAdapter(
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        listCategory[position].let { holder.bind(it) }
+        listCategories[position].let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int {
-        return listCategory.size
+        return listCategories.size
     }
 
-    inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view),
-        View.OnClickListener {
-
-        init {
-            view.setOnClickListener(this)
-            initView(view)
-        }
-
-        private fun initView(view: View) {
-            title = view.findViewById(R.id.title)
-            date = view.findViewById(R.id.date)
-            /*numberNote = view.findViewById(R.id.number)*/
-        }
+    inner class CategoryViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(
             listCategory: CategoryDbo
         ) {
-            title?.text = listCategory.title
-            date?.text = listCategory.date
+            view.findViewById<TextView>(R.id.title).text = listCategory.title
+            view.findViewById<TextView>(R.id.date).text = listCategory.date
+            view.setOnClickListener {
+                clickListener.onClick(listCategory)
+            }
             /*numberNote?.text = listCategory.numberNote*/
-        }
-
-        override fun onClick(v: View?) {
-            clickListener.onClick(listCategory[adapterPosition])
         }
     }
 }

@@ -21,7 +21,6 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
 
     private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var categoriesAdapter: CategoriesAdapter
-    private var categoryDbo: List<CategoryDbo>? = null
     private var category: CategoryDbo? = null
     private var floatingButton: FloatingActionButton? = null
 
@@ -36,7 +35,7 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
     private fun initUi() {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view)
         categoriesAdapter =
-            CategoriesAdapter(categoryDbo ?: emptyList(), clickListener = this)
+            CategoriesAdapter(clickListener = this)
         recyclerView?.apply {
             adapter = categoriesAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -54,15 +53,7 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
         categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
 
         categoriesViewModel.allCategories.observe(viewLifecycleOwner) {
-            categoriesAdapter.title?.text = category?.title
-            categoriesAdapter.date?.text = category?.date
-            val title = view?.findViewById<TextView>(R.id.title)
-            categoriesViewModel.addCategory(
-                0,
-                title?.text.toString(),
-                DateUtils.parseDate()
-            )
-            category?.let { categoriesViewModel.updateTitle(it.id, it.title) }
+            categoriesAdapter.listCategories = it
         }
     }
 
