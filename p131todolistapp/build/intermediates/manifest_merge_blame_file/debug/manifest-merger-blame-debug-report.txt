@@ -1,0 +1,149 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.triare.p131todolist"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.REORDER_TASKS" />
+11-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:24:5-72
+11-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:24:22-69
+12
+13    <application
+13-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:5:5-23:19
+14        android:name="com.triare.p131todolistapp.App"
+14-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:6:9-54
+15        android:allowBackup="true"
+15-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:8:9-35
+16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+16-->[androidx.core:core:1.7.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\de6558bdf3199a891106e54fae2fc697\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+17        android:debuggable="true"
+18        android:extractNativeLibs="false"
+19        android:icon="@mipmap/ic_launcher"
+19-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:9:9-43
+20        android:label="@string/notes"
+20-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:7:9-38
+21        android:roundIcon="@mipmap/ic_launcher_round"
+21-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:10:9-54
+22        android:supportsRtl="true"
+22-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:11:9-35
+23        android:testOnly="true"
+24        android:theme="@style/Theme.MyApplication" >
+24-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:12:9-51
+25        <activity
+25-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:13:9-22:20
+26            android:name="com.triare.p131todolistapp.ui.MainActivity"
+26-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:14:13-70
+27            android:exported="true"
+27-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:15:13-36
+28            android:theme="@style/Theme.MyApplication.NoActionBar" >
+28-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:16:13-67
+29            <intent-filter>
+29-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:17:13-21:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:18:17-69
+30-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:18:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:20:17-77
+32-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:20:27-74
+33            </intent-filter>
+34        </activity>
+35
+36        <uses-library
+36-->[androidx.window:window:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\f6dd48d22aa403cb034fcdb36c5363f9\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
+37            android:name="androidx.window.extensions"
+37-->[androidx.window:window:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\f6dd48d22aa403cb034fcdb36c5363f9\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
+38            android:required="false" />
+38-->[androidx.window:window:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\f6dd48d22aa403cb034fcdb36c5363f9\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
+39        <uses-library
+39-->[androidx.window:window:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\f6dd48d22aa403cb034fcdb36c5363f9\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
+40            android:name="androidx.window.sidecar"
+40-->[androidx.window:window:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\f6dd48d22aa403cb034fcdb36c5363f9\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
+41            android:required="false" />
+41-->[androidx.window:window:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\f6dd48d22aa403cb034fcdb36c5363f9\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
+42
+43        <service
+43-->[androidx.room:room-runtime:2.4.1] C:\Users\Kudriashka\.gradle\caches\transforms-3\caff5b252ea7a3940fe686b4508c9653\transformed\room-runtime-2.4.1\AndroidManifest.xml:25:9-28:40
+44            android:name="androidx.room.MultiInstanceInvalidationService"
+44-->[androidx.room:room-runtime:2.4.1] C:\Users\Kudriashka\.gradle\caches\transforms-3\caff5b252ea7a3940fe686b4508c9653\transformed\room-runtime-2.4.1\AndroidManifest.xml:26:13-74
+45            android:directBootAware="true"
+45-->[androidx.room:room-runtime:2.4.1] C:\Users\Kudriashka\.gradle\caches\transforms-3\caff5b252ea7a3940fe686b4508c9653\transformed\room-runtime-2.4.1\AndroidManifest.xml:27:13-43
+46            android:exported="false" />
+46-->[androidx.room:room-runtime:2.4.1] C:\Users\Kudriashka\.gradle\caches\transforms-3\caff5b252ea7a3940fe686b4508c9653\transformed\room-runtime-2.4.1\AndroidManifest.xml:28:13-37
+47
+48        <provider
+48-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\6e6a280a6dae4397ab2d83c1b19a23ec\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+49            android:name="androidx.startup.InitializationProvider"
+49-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\6e6a280a6dae4397ab2d83c1b19a23ec\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+50            android:authorities="com.triare.p131todolist.androidx-startup"
+50-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\6e6a280a6dae4397ab2d83c1b19a23ec\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+51            android:exported="false" >
+51-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\6e6a280a6dae4397ab2d83c1b19a23ec\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+52            <meta-data
+52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\6e6a280a6dae4397ab2d83c1b19a23ec\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+53                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\6e6a280a6dae4397ab2d83c1b19a23ec\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+54                android:value="androidx.startup" />
+54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\6e6a280a6dae4397ab2d83c1b19a23ec\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+55            <meta-data
+55-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\158b69580b367293f324ef966c720e99\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+56                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+56-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\158b69580b367293f324ef966c720e99\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+57                android:value="androidx.startup" />
+57-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\158b69580b367293f324ef966c720e99\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+58        </provider>
+59
+60        <activity
+60-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:27:9-34:20
+61            android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+61-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:28:13-99
+62            android:exported="true"
+62-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:29:13-36
+63            android:theme="@android:style/Theme" >
+63-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:30:13-49
+64            <intent-filter>
+64-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:31:13-33:29
+65                <action android:name="android.intent.action.MAIN" />
+65-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:18:17-69
+65-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:18:25-66
+66            </intent-filter>
+67        </activity>
+68        <activity
+68-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:35:9-42:20
+69            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
+69-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:36:13-95
+70            android:exported="true"
+70-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:37:13-36
+71            android:theme="@android:style/Theme" >
+71-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:38:13-49
+72            <intent-filter>
+72-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:31:13-33:29
+73                <action android:name="android.intent.action.MAIN" />
+73-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:18:17-69
+73-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:18:25-66
+74            </intent-filter>
+75        </activity>
+76        <activity
+76-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:43:9-50:20
+77            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity"
+77-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:44:13-103
+78            android:exported="true"
+78-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:45:13-36
+79            android:theme="@android:style/Theme.Dialog" >
+79-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:46:13-56
+80            <intent-filter>
+80-->[androidx.test:core:1.4.0] C:\Users\Kudriashka\.gradle\caches\transforms-3\8352d3479711a06a084bcc82169552bb\transformed\jetified-core-1.4.0\AndroidManifest.xml:31:13-33:29
+81                <action android:name="android.intent.action.MAIN" />
+81-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:18:17-69
+81-->E:\Android\Triare\AndroidCourseHomeWorks\p131todolistapp\src\main\AndroidManifest.xml:18:25-66
+82            </intent-filter>
+83        </activity>
+84    </application>
+85
+86</manifest>

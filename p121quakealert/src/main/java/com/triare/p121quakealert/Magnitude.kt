@@ -1,12 +1,38 @@
 package com.triare.p121quakealert
 
-enum class Magnitude(
-    val title: String,
+enum class Magnitude {
+    SCARCELY_PARCEPTIBLE,
+    WEAK,
+    AVERAGE,
+    STRONG,
+    VERY_STRONG;
+
+    val title: Int
+        get() = when (this) {
+            SCARCELY_PARCEPTIBLE -> R.string.magnitude_scarcely_parceptible_title
+            WEAK -> R.string.magnitude_weak_title
+            AVERAGE -> R.string.magnitude_average_title
+            STRONG -> R.string.magnitude_strong_title
+            VERY_STRONG -> R.string.magnitude_very_strong_title
+        }
     val color: Int
-) {
-    SCARCELY_PARCEPTIBLE("Ледь відчутний", R.color.scarcely_parceptible_color),
-    WEAK("Слабкий", R.color.weak_color),
-    AVERAGE("Середній", R.color.average_color),
-    STRONG("Сильний", R.color.strong_color),
-    VERY_STRONG("Дуже сильний", R.color.very_strong_color)
+        get() = when (this) {
+            SCARCELY_PARCEPTIBLE -> R.string.magnitude_scarcely_parceptible_title
+            WEAK -> R.color.green
+            AVERAGE -> R.color.yellow
+            STRONG -> R.color.orange
+            VERY_STRONG -> R.color.very_strong_color
+        }
+
+    companion object {
+        fun getMagnitude(magnitude: Double): Magnitude {
+            return when (magnitude) {
+                in 1.0..1.99 -> SCARCELY_PARCEPTIBLE
+                in 2.0..2.99 -> WEAK
+                in 3.0..4.49 -> AVERAGE
+                in 4.5..5.99 -> STRONG
+                else -> VERY_STRONG
+            }
+        }
+    }
 }
