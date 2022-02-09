@@ -16,6 +16,7 @@ class QuakeAlertListFragment : Fragment() {
     private val viewModel by viewModels<QuakeAlertListViewModel>()
     private lateinit var quakeAlertAdapter: QuakeAlertAdapter
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
