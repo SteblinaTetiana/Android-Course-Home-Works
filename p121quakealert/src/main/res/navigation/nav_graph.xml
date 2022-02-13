@@ -54,5 +54,10 @@
         android:id="@+id/mapFragment"
         android:name="com.triare.p121quakealert.ui.map.MapFragment"
         android:label=""
-        tools:layout="@layout/map_fragment" />
+        tools:layout="@layout/map_fragment" >
+
+        <argument
+            android:name="features"
+            app:argType="com.triare.p121quakealert.ui.model.Features" />
+    </fragment>
 </navigation>

@@ -23,6 +23,14 @@ enum class Magnitude {
             STRONG -> R.color.orange
             VERY_STRONG -> R.color.very_strong_color
         }
+    val icon: Int
+        get() = when (this) {
+            SCARCELY_PARCEPTIBLE -> R.drawable.ic_magnitude_scarcely_parceptible
+            WEAK -> R.drawable.ic_magnitude_weak
+            AVERAGE -> R.drawable.ic_magnitude_average
+            STRONG -> R.drawable.ic_magnitude_strong
+            VERY_STRONG -> R.drawable.ic_magnitude_very_strong
+        }
 
     companion object {
         fun getMagnitude(magnitude: Double): Magnitude {
