@@ -15,7 +15,7 @@ class MapViewModel : ViewModel() {
     private lateinit var mMap: GoogleMap
       private val placeMarker: PlaceMarker? = null
 
-    /* private lateinit var markersList: ArrayList<PlaceMarker>*/
+     private lateinit var markersList: ArrayList<PlaceMarker>
     private lateinit var _features: Features
 
 
@@ -28,16 +28,16 @@ class MapViewModel : ViewModel() {
         mMap = googleMap
 
         placeMarker?.let { MapHelper.setUpMarker(mMap, it, features) }
-       /* val updateCamera = MapHelper.updateCameraZoom(markersList)*/
-       /* val markersList = getMarkerList(_features)
+
+        val markersList = getMarkerList(_features)
         val updateCamera =
             if (markersList.toList().size == 1) {
                 MapHelper.updateCameraZoom(markersList)
             } else {
-               *//* MapHelper.updateCameraBounds(markersList)*//*
+                /*MapHelper.updateCameraBounds(markersList)*/
             }
 
-              MapHelper.setUpCamera(mMap, updateCamera as CameraUpdate)*/
+              MapHelper.setUpCamera(mMap, updateCamera as CameraUpdate)
         /* mMap.addMarker(
              MarkerOptions().position(LatLng(marker.position.latitude, marker.position.longitude))
                  .title("")

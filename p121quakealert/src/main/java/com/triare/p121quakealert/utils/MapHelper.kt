@@ -14,6 +14,8 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.clustering.ClusterManager
+import com.google.maps.android.clustering.algo.GridBasedAlgorithm
 import com.triare.p121quakealert.Magnitude
 import com.triare.p121quakealert.ui.model.FeatureDvo
 import com.triare.p121quakealert.ui.model.Features
@@ -59,8 +61,8 @@ object MapHelper {
             16.0f
         )
     }
-
-    /*  fun setUpClusterOfMarkers(
+/*
+      fun setUpClusterOfMarkers(
           googleMap: GoogleMap,
           markerList: ArrayList<PlaceMarker>,
           context: Context

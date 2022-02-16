@@ -3,6 +3,7 @@ package com.triare.p121quakealert.ui.map
 import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,20 +27,20 @@ import com.triare.p121quakealert.ui.model.FeatureDvo
 class MapFragment : Fragment(), OnMapReadyCallback {
 
     private val args by navArgs<MapFragmentArgs>()
+    private val feature by lazy { args.features }
 
     /* private lateinit var viewModel: MapViewModel*/
     private val viewModel: MapViewModel by viewModels()
     private lateinit var mMap: GoogleMap
     private val startForPermissionResult = buildRegisterForPermissionResult()
-    private var locationArrayList: ArrayList<LatLng>? = null
-    private lateinit var features: FeatureDvo
+    /*private lateinit var features: FeatureDvo*/
+
 
     private fun buildRegisterForPermissionResult(): ActivityResultLauncher<Array<String>> {
         return registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
             result[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
         }
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,6 +66,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         viewModel.init(args.features)
     }*/
 
+
     private fun initMap() {
         val mapFragment =
             this.childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
@@ -85,14 +87,20 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val coordinates = args.features?.geometry?.coordinates
 
         if (checkPermissionLocation() != null) {
             mMap.isMyLocationEnabled = true
             mMap.uiSettings.isMyLocationButtonEnabled = true
         }
 
-            args.features?.let { viewModel.setUpMarker(mMap, it) }
+        val bundle = arguments
+        if (bundle == null) {
+            Log.e("MapFragment", "MapFragment did not receive marker")
+            return
+        }
+        val args = MapFragmentArgs.fromBundle(bundle)
+        args.features?.let { viewModel.setUpMarker(mMap, it) }
+    }
 
        /* if (coordinates != null) {
             mMap.addMarker(
@@ -120,4 +128,3 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             )
         }
     }*/}
-}
