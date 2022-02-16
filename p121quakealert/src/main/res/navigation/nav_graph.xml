@@ -58,6 +58,8 @@
 
         <argument
             android:name="features"
-            app:argType="com.triare.p121quakealert.ui.model.Features" />
+            app:argType="com.triare.p121quakealert.ui.model.FeatureDvo"
+            android:defaultValue="@null"
+            app:nullable="true" />
     </fragment>
 </navigation>

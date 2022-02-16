@@ -1,7 +1,5 @@
 package com.triare.p121quakealert.ui.model
 
-import com.google.android.gms.maps.model.LatLng
-import com.triare.p121quakealert.utils.PlaceMarker
 import java.io.Serializable
 
 data class QuakeAlertDvo(
@@ -20,11 +18,6 @@ data class GeometryDvo(
     val type: String
 )
 
-/*data class CoordinatesDvo(
-    val lat: Double,
-    val lng: Double
-)*/
-
 data class PropertiesDvo(
     val depth: Double,
     val locality: String,
@@ -32,12 +25,4 @@ data class PropertiesDvo(
     val time: String
 )
 
-/*
-fun FeatureDvo.toPlaceMarker(): PlaceMarker = PlaceMarker(
-    name = "",
-    latLng = LatLng(geometry.coordinates.lat, geometry.coordinates.lng),
-    address = "",
-)
-*/
-
-class Features: ArrayList<FeatureDvo>()
+class Features : ArrayList<FeatureDvo>()

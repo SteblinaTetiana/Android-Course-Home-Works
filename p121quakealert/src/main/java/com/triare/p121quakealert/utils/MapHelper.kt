@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.DashPathEffect
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
@@ -18,7 +17,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.triare.p121quakealert.Magnitude
 import com.triare.p121quakealert.ui.model.FeatureDvo
 import com.triare.p121quakealert.ui.model.Features
-import com.triare.p121quakealert.ui.model.GeometryDvo
 
 @SuppressLint("StaticFieldLeak")
 object MapHelper {
@@ -28,9 +26,10 @@ object MapHelper {
     private lateinit var mMap: GoogleMap
     private var locationArrayList: ArrayList<LatLng>? = null
 
+
     private fun getPosition(features: FeatureDvo): LatLng {
-        val lat = features.geometry.coordinates[0]
-        val lng = features.geometry.coordinates[0]
+        val lat = features.geometry.coordinates.first()
+        val lng = features.geometry.coordinates.last()
         return LatLng(lat, lng)
     }
 
@@ -88,36 +87,39 @@ object MapHelper {
         return placeMarkerList
     }
 
-    fun setUpMarker(googleMap: GoogleMap/*, marker: PlaceMarker*/) {
+    fun setUpMarker(googleMap: GoogleMap, marker: PlaceMarker, features: FeatureDvo) {
 
-        locationArrayList =  ArrayList()
+        val coordinates = features.geometry.coordinates
+
+        locationArrayList = ArrayList()
         locationArrayList!!.add(
-            LatLng(features.geometry.coordinates[0], features.geometry.coordinates[0] ))
+            LatLng(coordinates.first(), coordinates.last())
+        )
 
         if (locationArrayList != null) {
             for (i in 0 until locationArrayList!!.size) {
                 if (locationArrayList != null) {
-                    mMap.addMarker(MarkerOptions().position(locationArrayList!![i]).title("Marker"))
-                    mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f))
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(locationArrayList!![i]))
+                    mMap.addMarker(MarkerOptions().position(locationArrayList!![i]).title("Marker")
+                        .icon(magnitudeIcon))
+                    /* mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f))
+                     mMap.moveCamera(CameraUpdateFactory.newLatLng(locationArrayList!![i]))*/
                 }
             }
         }
-         mMap = googleMap
-       /* googleMap.addMarker(
-            markerOptions(marker)
-        )*/
+        mMap = googleMap
+         googleMap.addMarker(
+             markerOptions(marker)
+         )
 
-        /*  for (location in features.geometry.coordinates) {
-              val latLng = LatLng(location, location)
-              mMap.addMarker(
-                  MarkerOptions()
-                      .position(latLng)
-                      .title("")
-                      .icon(magnitudeIcon)
-              )
-          }
-  */
+        /*for (location in features.geometry.coordinates) {
+            val latLng = LatLng(location, location)
+            mMap.addMarker(
+                MarkerOptions()
+                    .position(latLng)
+                    .title("")
+                   *//* .icon(magnitudeIcon)*//*
+            )
+        }*/
 
     }
 
@@ -125,7 +127,7 @@ object MapHelper {
         return MarkerOptions()
             .position(marker.position)
             .title(marker.title)
-            .icon(magnitudeIcon)
+             .icon(magnitudeIcon)
     }
 
 /*    private fun resizeBitmap(bitmap: Bitmap): Bitmap = Bitmap.createScaledBitmap(bitmap, 63, 110, false)
