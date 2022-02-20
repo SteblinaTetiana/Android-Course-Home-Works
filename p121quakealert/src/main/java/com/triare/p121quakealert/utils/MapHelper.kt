@@ -141,7 +141,6 @@ object MapHelper {
             .icon(magnitudeIcon)
     }
 
-
     fun vectorToBitmap(context: Context, @DrawableRes id: Int): BitmapDescriptor {
         val vectorDrawable = ResourcesCompat.getDrawable(context.resources, id, null)
         if (vectorDrawable == null) {
