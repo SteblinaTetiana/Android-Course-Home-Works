@@ -7,13 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="splash_screen">#ED3237</color>
-    <color name="main_screen">#F5F5F5</color>
+    <color name="red">#ED3237</color>
+    <color name="white_dark">#F5F5F5</color>
     <color name="status_bar">#292B2B3D</color>
 
-    <color name="scarcely_parceptible_color">#8ACB79</color>
-    <color name="weak_color">#73C7B3</color>
-    <color name="average_color">#EEC800</color>
-    <color name="strong_color">#F87F28</color>
+    <color name="green">#8ACB79</color>
+    <color name="blue">#73C7B3</color>
+    <color name="yellow">#EEC800</color>
+    <color name="orange">#F87F28</color>
+    <color name="gray">#8D2B2B3D</color>
+
+    <!--Specific-->
     <color name="very_strong_color">#ED3237</color>
 </resources>

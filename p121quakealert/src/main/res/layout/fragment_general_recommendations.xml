@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".GeneralRecommendationsFragment">
+    tools:context=".ui.recommendations.GeneralRecommendationsFragment">
 
     <TextView
         android:id="@+id/title_recommendation"
@@ -26,7 +27,7 @@
         android:layout_width="50dp"
         android:layout_height="4dp"
         android:layout_marginTop="24dp"
-        android:background="@color/splash_screen"
+        android:background="@color/red"
         app:layout_constraintEnd_toEndOf="@+id/title_recommendation"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/title_recommendation"
@@ -38,9 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="10dp"
-        android:text="@string/description_recommendations"
+        android:text="@string/recommendations_description"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/view"
         tools:layout_editor_absoluteX="16dp" />
 

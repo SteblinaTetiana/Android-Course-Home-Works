@@ -7,33 +7,62 @@
 
     <fragment
         android:id="@+id/quakeAlertListFragment"
-        android:name="com.triare.p121quakealert.quakealertlist.QuakeAlertListFragment"
+        android:name="com.triare.p121quakealert.ui.quakealertlist.QuakeAlertListFragment"
         android:label=""
         tools:layout="@layout/quake_alert_list_fragment">
         <action
             android:id="@+id/action_quakeAlertListFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_quakeAlertListFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.triare.p121quakealert.DetailFragment"
+        android:name="com.triare.p121quakealert.ui.details.DetailFragment"
         android:label=""
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="features"
-            app:argType="com.triare.p121quakealert.model.Feature"
+            app:argType="com.triare.p121quakealert.ui.model.FeatureDvo"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_detailFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/aboutusFragment"
-        android:name="com.triare.p121quakealert.AboutusFragment"
+        android:id="@+id/aboutUsFragment"
+        android:name="com.triare.p121quakealert.ui.about_us.AboutUsFragment"
         android:label=""
-        tools:layout="@layout/fragment_aboutus" />
+        tools:layout="@layout/fragment_about_us">
+        <action
+            android:id="@+id/action_aboutUsFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/generalRecommendationsFragment"
-        android:name="com.triare.p121quakealert.GeneralRecommendationsFragment"
+        android:name="com.triare.p121quakealert.ui.recommendations.GeneralRecommendationsFragment"
         android:label=""
-        tools:layout="@layout/fragment_general_recommendations" />
+        tools:layout="@layout/fragment_general_recommendations">
+        <action
+            android:id="@+id/action_generalRecommendationsFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.triare.p121quakealert.ui.map.MapFragment"
+        android:label=""
+        tools:layout="@layout/map_fragment">
+
+        <argument
+            android:name="features"
+            android:defaultValue="@null"
+            app:argType="com.triare.p121quakealert.ui.model.Features"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_mapFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

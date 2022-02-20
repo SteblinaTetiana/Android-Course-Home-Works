@@ -1,0 +1,17 @@
+com/triare/p131todolist/BuildConfig.java
+ com.triare.p131todolist.BuildConfig
+com/triare/p131todolistapp/data/db/dao/CategoryDao_Impl.java
+ com.triare.p131todolistapp.data.db.dao.CategoryDao_Impl
+ com.triare.p131todolistapp.data.db.dao.CategoryDao_Impl$1
+ com.triare.p131todolistapp.data.db.dao.CategoryDao_Impl$2
+ com.triare.p131todolistapp.data.db.dao.CategoryDao_Impl$3
+com/triare/p131todolistapp/data/db/dao/TaskDao_Impl.java
+ com.triare.p131todolistapp.data.db.dao.TaskDao_Impl
+ com.triare.p131todolistapp.data.db.dao.TaskDao_Impl$1
+ com.triare.p131todolistapp.data.db.dao.TaskDao_Impl$2
+ com.triare.p131todolistapp.data.db.dao.TaskDao_Impl$3
+ com.triare.p131todolistapp.data.db.dao.TaskDao_Impl$4
+ com.triare.p131todolistapp.data.db.dao.TaskDao_Impl$5
+com/triare/p131todolistapp/data/db/AppDatabase_Impl.java
+ com.triare.p131todolistapp.data.db.AppDatabase_Impl
+ com.triare.p131todolistapp.data.db.AppDatabase_Impl$1

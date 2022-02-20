@@ -1,0 +1,126 @@
+[
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\layout_categoty_detail_fragment.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\layout\\categoty_detail_fragment.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\drawable_ic_delete.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\drawable\\ic_delete.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\layout_categories_fragment.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\layout\\categories_fragment.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\navigation_nav_graph.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\layout_alert_dialog_add.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\layout\\alert_dialog_add.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\menu_menu_edit.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\menu\\menu_edit.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\layout_list_item.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\layout\\list_item.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\layout_alert_dialog_delete.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\layout\\alert_dialog_delete.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\drawable_ic_done.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\drawable\\ic_done.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\drawable_ic_back.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\drawable\\ic_back.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\layout_app_bar_note.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\layout\\app_bar_note.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\drawable_ic_create.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\drawable\\ic_create.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\drawable_ic_plus.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\drawable\\ic_plus.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\layout_task_list_item.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\layout\\task_list_item.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\font_ibm_plex_sans.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\font\\ibm_plex_sans.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\menu_menu_create.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\menu\\menu_create.xml"
+    },
+    {
+        "merged": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "E:\\Android\\Triare\\AndroidCourseHomeWorks\\p131todolistapp\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    }
+]

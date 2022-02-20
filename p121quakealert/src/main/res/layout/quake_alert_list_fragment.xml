@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    tools:context=".quakealertlist.QuakeAlertListFragment">
+    android:background="@color/white_dark"
+    tools:context=".ui.quakealertlist.QuakeAlertListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
