@@ -2,8 +2,8 @@ package com.triare.p121quakealert.ui.map
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,25 +12,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.triare.p121quakealert.R
-import com.triare.p121quakealert.ui.details.DetailFragmentArgs
-import com.triare.p121quakealert.ui.model.FeatureDvo
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
     private val args by navArgs<MapFragmentArgs>()
-    private val feature by lazy { args.features }
 
-    /* private lateinit var viewModel: MapViewModel*/
-    private val viewModel: MapViewModel by viewModels()
+    private val viewModel by viewModels<MapViewModel>()
+
     private lateinit var mMap: GoogleMap
     private val startForPermissionResult = buildRegisterForPermissionResult()
     /*private lateinit var features: FeatureDvo*/
@@ -45,13 +38,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /* viewModel = ViewModelProvider(this)[MapViewModel::class.java]*/
-
-        initMap()
         checkPermissionLocation()
-
-        /*  locationArrayList = ArrayList()
-          locationArrayList!!.add(LatLng(features.geometry.coordinates[0], features.geometry.coordinates[0]))*/
+        initMap()
+        observeUpdate()
     }
 
     override fun onCreateView(
@@ -60,17 +49,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     ): View? {
         return inflater.inflate(R.layout.map_fragment, container, false)
     }
-/*
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel.init(args.features)
-    }*/
-
-
-    private fun initMap() {
-        val mapFragment =
-            this.childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment!!.getMapAsync(this)
+        args.features?.let { viewModel.init(it) }
     }
 
 
@@ -83,27 +65,64 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         )
     }
 
+    private fun initMap() {
+        val mapFragment =
+            this.childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment!!.getMapAsync(this)
+    }
+
+    private fun observeUpdate() {
+        viewModel.featuresResult.observe(viewLifecycleOwner) {
+            args.features?.let { viewModel.createMarker(mMap, it) }
+        }
+    }
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+
+        val coordinates = args.features
 
         if (checkPermissionLocation() != null) {
             mMap.isMyLocationEnabled = true
             mMap.uiSettings.isMyLocationButtonEnabled = true
         }
 
-        val bundle = arguments
-        if (bundle == null) {
-            Log.e("MapFragment", "MapFragment did not receive marker")
-            return
-        }
-        val args = MapFragmentArgs.fromBundle(bundle)
-        args.features?.let { viewModel.setUpMarker(mMap, it) }
+        /*val gmmIntentUri = Uri.parse("$coordinates")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)*/
+
+        args.features?.let { viewModel.createMarker(mMap, it) }
     }
 
-       /* if (coordinates != null) {
-            mMap.addMarker(
+
+    /* coordinates.let {
+         it?.forEach { coordinates ->
+             googleMap.addMarker(
+                 MarkerOptions().position(
+                     LatLng(it.first(), it.last())
+                 )
+             )
+         }
+         it?.first().let { coordinates ->
+             it?.last()?.let { it1 -> LatLng(it.first(), it1) }?.let { it2 ->
+                 CameraUpdateFactory.newLatLngZoom(
+                     it2, 3F
+                 )
+             }?.let { it3 ->
+                 googleMap.moveCamera(
+                     it3
+                 )
+             }
+         }
+     }
+ }*/
+
+    /*if (coordinates != null) {
+        for (place in coordinates) {
+
+            val marker = mMap.addMarker(
                 MarkerOptions().position(
                     LatLng(
                         coordinates.first(),
@@ -111,20 +130,22 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     )
                 )
                     .title("")
-                *//*   .icon(bicycleIcon)*//*
-            )
-        }
-        if (coordinates != null) {
-            mMap.moveCamera(
-                CameraUpdateFactory.newCameraPosition(
-                    CameraPosition.fromLatLngZoom(
-                        LatLng(
-                            coordinates.first(),
-                            coordinates.last()
-                        ),
-                        15f
+                *//*  .icon(bicycleIcon)*//*
+                )
+                marker?.let { feature.add(it) }
+
+                mMap.moveCamera(
+                    CameraUpdateFactory.newCameraPosition(
+                        CameraPosition.fromLatLngZoom(
+                            LatLng(
+                                coordinates.first(),
+                                coordinates.last()
+                            ),
+                            15f
+                        )
                     )
                 )
-            )
+            }
         }
-    }*/}
+*/
+}

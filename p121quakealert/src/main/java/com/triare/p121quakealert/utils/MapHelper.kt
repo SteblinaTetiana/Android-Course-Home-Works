@@ -10,10 +10,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.algo.GridBasedAlgorithm
 import com.triare.p121quakealert.Magnitude
@@ -23,10 +20,11 @@ import com.triare.p121quakealert.ui.model.Features
 @SuppressLint("StaticFieldLeak")
 object MapHelper {
 
-    private lateinit var context: Context
-    private lateinit var features: FeatureDvo
+    lateinit var context: Context
+    lateinit var features: FeatureDvo
     private lateinit var mMap: GoogleMap
     private var locationArrayList: ArrayList<LatLng>? = null
+    private lateinit var builder: LatLngBounds.Builder
 
 
     private fun getPosition(features: FeatureDvo): LatLng {
@@ -55,32 +53,46 @@ object MapHelper {
         googleMap.moveCamera(cameraUpdate)
     }
 
+    fun setUpBounds(markerList: MutableIterable<PlaceMarker>): LatLngBounds {
+        builder = LatLngBounds.builder()
+        for (marker in markerList) {
+            builder.include(marker.position)
+        }
+        return builder.build()
+    }
+
     fun updateCameraZoom(markerList: ArrayList<PlaceMarker>): CameraUpdate {
         return CameraUpdateFactory.newLatLngZoom(
             markerList[0].position,
             16.0f
         )
     }
-/*
-      fun setUpClusterOfMarkers(
-          googleMap: GoogleMap,
-          markerList: ArrayList<PlaceMarker>,
-          context: Context
-      ): ClusterManager<PlaceMarker> {
-          val manager = ClusterManager<PlaceMarker>(context, googleMap)
-          manager.renderer = ClusterMarkerRenderer(context, googleMap, manager)
-          manager.algorithm = GridBasedAlgorithm()
-          manager.addItems(markerList)
-          manager.cluster()
-          return manager
-      }*/
+
+    fun updateCameraBounds(markerList: ArrayList<PlaceMarker>): CameraUpdate {
+        return CameraUpdateFactory.newLatLngBounds(
+            setUpBounds(markerList), 150
+        )
+    }
+
+    fun setUpClusterOfMarkers(
+        googleMap: GoogleMap,
+        markerList: ArrayList<PlaceMarker>,
+        context: Context
+    ): ClusterManager<PlaceMarker> {
+        val manager = ClusterManager<PlaceMarker>(context, googleMap)
+        manager.renderer = ClusterMarkerRenderer(context, googleMap, manager)
+        manager.algorithm = GridBasedAlgorithm()
+        manager.addItems(markerList)
+        manager.cluster()
+        return manager
+    }
 
     fun getMarkerList(features: Features): ArrayList<PlaceMarker> {
         val placeMarkerList = ArrayList<PlaceMarker>()
         for (place in features) {
             val mItem =
                 PlaceMarker(
-                    getPosition(place).latitude,
+                    getPosition(place).longitude,
                     getPosition(place).longitude,
                     place.properties.locality
                 )
@@ -89,39 +101,36 @@ object MapHelper {
         return placeMarkerList
     }
 
-    fun setUpMarker(googleMap: GoogleMap, marker: PlaceMarker, features: FeatureDvo) {
+    fun setUpMarker(marker: PlaceMarker, googleMap: GoogleMap /*, features: FeatureDvo*/) {
+        mMap = googleMap
+        /*   val coordinates = features.geometry.coordinates
 
-        val coordinates = features.geometry.coordinates
-
-        locationArrayList = ArrayList()
+           *//*locationArrayList = ArrayList()*//*
         locationArrayList!!.add(
             LatLng(coordinates.first(), coordinates.last())
         )
 
-        if (locationArrayList != null) {
-            for (i in 0 until locationArrayList!!.size) {
-                if (locationArrayList != null) {
-                    mMap.addMarker(MarkerOptions().position(locationArrayList!![i]).title("Marker")
-                        .icon(magnitudeIcon))
-                    /* mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f))
-                     mMap.moveCamera(CameraUpdateFactory.newLatLng(locationArrayList!![i]))*/
-                }
-            }
-        }
-        mMap = googleMap
-         googleMap.addMarker(
-             markerOptions(marker)
-         )
+        for (i in locationArrayList!!.indices) {
+            mMap.addMarker(MarkerOptions().position(locationArrayList!![i]).title("Marker").icon(magnitudeIcon))
 
-        /*for (location in features.geometry.coordinates) {
-            val latLng = LatLng(location, location)
-            mMap.addMarker(
-                MarkerOptions()
-                    .position(latLng)
-                    .title("")
-                   *//* .icon(magnitudeIcon)*//*
-            )
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f))
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(locationArrayList!![i]))
         }*/
+
+        googleMap.addMarker(
+            markerOptions(marker)
+        )
+
+        /* for (location in coordinates) {
+             val latLng = LatLng(location, location)
+             mMap.addMarker(
+                 MarkerOptions()
+                     .position(latLng)
+                     .title("")
+                     .icon(magnitudeIcon)
+             )
+         }*/
 
     }
 
@@ -129,28 +138,11 @@ object MapHelper {
         return MarkerOptions()
             .position(marker.position)
             .title(marker.title)
-             .icon(magnitudeIcon)
+            .icon(magnitudeIcon)
     }
 
-/*    private fun resizeBitmap(bitmap: Bitmap): Bitmap = Bitmap.createScaledBitmap(bitmap, 63, 110, false)
 
-private fun createMarker(text: String, bitmap: Bitmap): Bitmap {
-val mBitmap = resizeBitmap(bitmap)
-val canvas = Canvas(mBitmap)
-val paint = Paint()
-paint.textSize = 40F
-paint.style = Paint.Style.FILL
-canvas.drawText(
-   text,
-   (mBitmap.width / 3).toFloat(),
-   (mBitmap.height / 2).toFloat(),
-   paint
-)
-return mBitmap
-}*/
-
-
-    private fun vectorToBitmap(context: Context, @DrawableRes id: Int): BitmapDescriptor {
+    fun vectorToBitmap(context: Context, @DrawableRes id: Int): BitmapDescriptor {
         val vectorDrawable = ResourcesCompat.getDrawable(context.resources, id, null)
         if (vectorDrawable == null) {
             Log.e("BitmapHelper", "Resource not found")

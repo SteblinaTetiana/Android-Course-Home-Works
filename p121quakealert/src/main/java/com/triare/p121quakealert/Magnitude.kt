@@ -17,8 +17,8 @@ enum class Magnitude {
         }
     val color: Int
         get() = when (this) {
-            SCARCELY_PARCEPTIBLE -> R.string.magnitude_scarcely_parceptible_title
-            WEAK -> R.color.green
+            SCARCELY_PARCEPTIBLE -> R.color.green
+            WEAK -> R.color.blue
             AVERAGE -> R.color.yellow
             STRONG -> R.color.orange
             VERY_STRONG -> R.color.very_strong_color

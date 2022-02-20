@@ -54,12 +54,15 @@
         android:id="@+id/mapFragment"
         android:name="com.triare.p121quakealert.ui.map.MapFragment"
         android:label=""
-        tools:layout="@layout/map_fragment" >
+        tools:layout="@layout/map_fragment">
 
         <argument
             android:name="features"
-            app:argType="com.triare.p121quakealert.ui.model.FeatureDvo"
             android:defaultValue="@null"
+            app:argType="com.triare.p121quakealert.ui.model.Features"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_mapFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 </navigation>
