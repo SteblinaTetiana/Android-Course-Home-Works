@@ -57,4 +57,8 @@ class CategoryDetailViewModel : ViewModel() {
     fun deleteByCategory(categoryId: Int) {
         tasksRepository.deleteByCategory(categoryId)
     }
+
+    fun addTask(tasks: TaskDbo) {
+        tasksRepository.addTask(tasks)
+    }
 }

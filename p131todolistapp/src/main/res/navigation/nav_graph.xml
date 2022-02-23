@@ -11,11 +11,11 @@
         android:label="@string/to_do_lists"
         tools:layout="@layout/categories_fragment">
         <action
-            android:id="@+id/action_categoriesFragment_to_tasksFragment"
-            app:destination="@id/tasksFragment" />
+            android:id="@+id/action_categoriesFragment_to_categoryDetailFragment"
+            app:destination="@id/categoryDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/tasksFragment"
+        android:id="@+id/categoryDetailFragment"
         android:label=""
         android:name="com.triare.p131todolistapp.ui.category_detail.CategoryDetailFragment"
         tools:layout="@layout/categoty_detail_fragment" />

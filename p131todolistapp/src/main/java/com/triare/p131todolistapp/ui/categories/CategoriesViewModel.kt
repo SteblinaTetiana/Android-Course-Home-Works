@@ -19,4 +19,8 @@ class CategoriesViewModel : ViewModel() {
         categoryRepository.updateTitle(id, title)
     }
 
+    fun addCategory(category: CategoryDbo) {
+        categoryRepository.addCategory(category)
+    }
+
 }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.triare.p131todolist">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.triare.p131todolistapp.App"
         android:label="@string/notes"

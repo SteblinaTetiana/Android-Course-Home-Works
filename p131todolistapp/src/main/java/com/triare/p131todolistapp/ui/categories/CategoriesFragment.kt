@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.data.model.CategoryDbo
-import com.triare.p131todolistapp.utils.DateUtils
 
 
 class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
@@ -44,7 +42,7 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
     private fun initView() {
         floatingButton = view?.findViewById(R.id.floatingActionButton)
         floatingButton?.setOnClickListener {
-            findNavController().navigate(R.id.tasksFragment)
+            findNavController().navigate(R.id.categoryDetailFragment)
         }
     }
 
@@ -68,7 +66,7 @@ class CategoriesFragment : Fragment(), CategoriesAdapter.OnItemClickListener {
     }
 
     fun list(view: View) {
-        CategoriesFragmentDirections.actionCategoriesFragmentToTasksFragment(
+        CategoriesFragmentDirections.actionCategoriesFragmentToCategoryDetailFragment(
         ).also {
             view.findNavController().navigate(it)
         }

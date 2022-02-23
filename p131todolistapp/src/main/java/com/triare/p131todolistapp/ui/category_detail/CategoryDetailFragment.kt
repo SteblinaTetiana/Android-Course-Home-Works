@@ -1,7 +1,6 @@
 package com.triare.p131todolistapp.ui.category_detail
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,15 +21,15 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.triare.p131todolist.R
 import com.triare.p131todolistapp.App
+import com.triare.p131todolistapp.data.model.CategoryDbo
 import com.triare.p131todolistapp.data.model.TaskDbo
-import com.triare.p131todolistapp.ui.MainActivity
 import com.triare.p131todolistapp.ui.categories.CategoriesViewModel
 import com.triare.p131todolistapp.utils.DateUtils
 
 
 class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListener*/ {
 
-    private lateinit var categoryDetailViewModel: CategoryDetailViewModel
+    private val categoryDetailViewModel by viewModels<CategoryDetailViewModel>()
     private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var tasksAdapter: TasksAdapter
 
@@ -46,7 +46,14 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         initUi(view)
         initView()
         initViewModel()
+    }
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+        return inflater.inflate(R.layout.categoty_detail_fragment, container, false)
     }
 
     /*private fun update(dataItems: List<TaskDbo>) {
@@ -69,7 +76,6 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         toolbar?.inflateMenu(R.menu.menu_edit)
 
         toolbar?.setNavigationOnClickListener {
-           /* initIntentToMainActivity()*/
             findNavController().popBackStack()
         }
 
@@ -78,11 +84,19 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
                 R.id.edit_note -> {
                     val title = view?.findViewById<EditText>(R.id.title_task)
                     categoriesViewModel.addCategory(
-                        0,
+                        id,
                         title?.text.toString(),
                         DateUtils.parseDate()
                     )
-                    task?.let { it1 -> categoryDetailViewModel.addTasks(it1) }
+                    categoriesViewModel.addCategory(
+                        CategoryDbo(
+                            id,
+                            title?.text.toString(),
+                            DateUtils.parseDate()
+                        )
+                    )
+                    task?.let { it -> categoryDetailViewModel.addTask(it) }
+                    task?.let { it -> categoryDetailViewModel.addTasks(it) }
                     Toast.makeText(context, "Add Title", Toast.LENGTH_SHORT).show()
                     findNavController().popBackStack()
                     true
@@ -94,7 +108,7 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
                 }
 
                 R.id.delate_note -> {
-                    alertDialogDelete()
+                    deleteCategory()
                     true
                 }
                 else -> true
@@ -102,9 +116,9 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         }
     }
 
-    private fun initIntentToMainActivity() {
-        startActivity(Intent(context, MainActivity::class.java))
-    }
+    /* private fun initIntentToMainActivity() {
+         startActivity(Intent(context, MainActivity::class.java))
+     }*/
 
     private fun initUi(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_create)
@@ -122,15 +136,18 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
     private fun initView() {
         floatingButtonCreate = view?.findViewById(R.id.floatingActionButton_create)
         floatingButtonCreate?.setOnClickListener {
-            alertDialogAdd()
+            saveTask()
         }
     }
 
     private fun initViewModel() {
-        categoryDetailViewModel = ViewModelProvider(this)[CategoryDetailViewModel::class.java]
 
-          categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
+        categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
 
+        observeUpdate()
+    }
+
+    private fun observeUpdate() {
         categoryDetailViewModel.allTasks.observe(viewLifecycleOwner) {
             /* tasks?.let { listTasks.let { it1 -> tasksAdapter.update(it1) } }*/
             tasksAdapter.listTasks = it
@@ -139,7 +156,7 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         }
     }
 
-    private fun alertDialogAdd() {
+    private fun saveTask() {
         val layoutInflater = LayoutInflater.from(context)
         val dialogLayout: View = layoutInflater.inflate(R.layout.alert_dialog_add, null)
         val alertDialogBuilder = context?.let {
@@ -156,12 +173,16 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
             ) { dialog, id ->
                 val text = view?.findViewById<TextView>(R.id.text_checked_view)
                 text?.text = userInput.text.toString()
-                /* categoryDetailViewModel.addData(
-                     task?.id ?: 0,
-                     task?.categoryId ?: 0,
-                     tasksAdapter.text?.text.toString(),
-                     tasksAdapter.isFinished?.isChecked == false
-                 )*/
+                task?.let {
+                    categoryDetailViewModel.addData(
+                        it.id,
+                        it.categoryId,
+                        it.text,
+                        it.isFinished
+                    )
+                }
+
+                task?.let { categoryDetailViewModel.addTask(task!!) }
                 task?.let { categoryDetailViewModel.addTasks(task!!) }
                 /*  tasksAdapter.update()*/
                 /*  if (listTasks != null) {
@@ -178,7 +199,7 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun alertDialogDelete() {
+    private fun deleteCategory() {
 
         val layoutInflater = LayoutInflater.from(context)
         val dialogLayout: View = layoutInflater.inflate(R.layout.alert_dialog_delete, null)
@@ -194,7 +215,8 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
             ) { dialog, id ->
                 task?.let { categoryDetailViewModel.deleteByCategory(id) }
                 tasksAdapter.notifyDataSetChanged()
-                initIntentToMainActivity()
+                /*initIntentToMainActivity()*/
+                findNavController().popBackStack()
             }
             ?.setNegativeButton(
                 App.context.getString(R.string.cancel)
@@ -203,13 +225,5 @@ class CategoryDetailFragment : Fragment()/*, CreateNoteAdapter.OnItemClickListen
         val alertDialog: AlertDialog? = alertDialogBuilder?.create()
 
         alertDialog?.show()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.categoty_detail_fragment, container, false)
     }
 }
